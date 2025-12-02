@@ -10,13 +10,17 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    gui/mainwindow.cpp \
+    json/jsonhandler.cpp \
+    xml/xmlhandler.cpp
 
 HEADERS += \
-    mainwindow.h
+    gui/mainwindow.h \
+    json/jsonhandler.h \
+    xml/xmlhandler.h
 
 FORMS += \
-    mainwindow.ui
+    gui/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
