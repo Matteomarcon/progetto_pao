@@ -12,10 +12,12 @@ SOURCES += \
     main.cpp \
     gui/mainwindow.cpp \
     json/jsonhandler.cpp \
+    attivita/attivita.cpp \
     xml/xmlhandler.cpp
 
 HEADERS += \
     gui/mainwindow.h \
+    attivita/attivita.h \
     json/jsonhandler.h \
     xml/xmlhandler.h
 
