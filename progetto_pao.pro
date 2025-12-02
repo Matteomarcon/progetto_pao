@@ -1,4 +1,5 @@
 QT       += core gui
+QT       += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -9,20 +10,22 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    attivita/Attivita.cpp \
+    gui/Mainwindow.cpp \
+    json/JsonHandler.cpp \
     main.cpp \
-    gui/mainwindow.cpp \
-    json/jsonhandler.cpp \
-    attivita/attivita.cpp \
-    xml/xmlhandler.cpp
+    xml/XMLHandler.cpp
 
 HEADERS += \
-    gui/mainwindow.h \
-    attivita/attivita.h \
-    json/jsonhandler.h \
-    xml/xmlhandler.h
+    attivita/Attivita.h \
+    attivita/VisitorInterface.h \
+    attivita/VisitorModifica.h \
+    gui/Mainwindow.h \
+    json/JsonHandler.h \
+    xml/XMLHandler.h
 
 FORMS += \
-    gui/mainwindow.ui
+    gui/Mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

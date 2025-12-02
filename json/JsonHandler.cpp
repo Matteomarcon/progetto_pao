@@ -1,3 +1,3 @@
-#include "jsonhandler.h"
+#include "JsonHandler.h"
 
 jsonHandler::jsonHandler() {}

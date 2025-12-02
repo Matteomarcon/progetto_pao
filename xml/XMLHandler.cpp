@@ -1,3 +1,3 @@
-#include "xmlhandler.h"
+#include "XMLHandler.h"
 
 xmlHandler::xmlHandler() {}
