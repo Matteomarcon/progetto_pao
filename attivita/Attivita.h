@@ -13,20 +13,17 @@ private:
     QString titolo;
     QString descrizione;
     QDateTime dataCreazione;
-    bool completata;
 public:
-    Attivita(QString titolo, QString descrizione, QDateTime dataCreazione, bool completata); //Costruttore da definire in base agli attributi
+    Attivita(QString titolo, QString descrizione, QDateTime dataCreazione);
     virtual ~Attivita() {};
 
     //Metodi get e set da inserire in base agli attributi
     QString getTitolo() const;
     QString getDescrizione() const;
     QDateTime getDataCreazione() const;
-    bool getCompletata() const;
     void setTitolo(QString);
     void setDescrizione(QString);
     void setDataCreazione(QDateTime);
-    void setCompletata(bool);
 
     virtual void accept(VisitorInterface&) = 0;
     virtual void accept(VisitorModifica&) = 0;

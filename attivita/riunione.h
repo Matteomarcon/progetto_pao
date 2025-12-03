@@ -1,7 +1,9 @@
 #ifndef RIUNIONE_H
 #define RIUNIONE_H
 
-class Riunione {
+#include "attivita/AttivitaTemporizzata.h"
+
+class Riunione : public AttivitaTemporizzata {
 public:
     Riunione();
 };

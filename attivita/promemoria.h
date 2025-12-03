@@ -1,7 +1,9 @@
 #ifndef PROMEMORIA_H
 #define PROMEMORIA_H
 
-class Promemoria {
+#include "attivitanontemporizzata.h"
+
+class Promemoria : public AttivitaNonTemporizzata {
 public:
     Promemoria();
 };

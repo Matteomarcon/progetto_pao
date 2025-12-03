@@ -1,7 +1,9 @@
 #ifndef VIAGGIO_H
 #define VIAGGIO_H
 
-class Viaggio {
+#include "attivita/AttivitaTemporizzata.h"
+
+class Viaggio : public AttivitaTemporizzata {
 public:
     Viaggio();
 };

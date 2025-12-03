@@ -11,8 +11,10 @@ CONFIG += c++17
 
 SOURCES += \
     attivita/Attivita.cpp \
+    attivita/attivitanontemporizzata.cpp \
+    attivita/attivitatemporizzata.cpp \
     attivita/evento.cpp \
-    attivita/impegno.cpp \
+    attivita/lettura.cpp \
     attivita/promemoria.cpp \
     attivita/riunione.cpp \
     attivita/viaggio.cpp \
@@ -25,8 +27,10 @@ HEADERS += \
     attivita/Attivita.h \
     attivita/VisitorInterface.h \
     attivita/VisitorModifica.h \
+    attivita/attivitanontemporizzata.h \
+    attivita/attivitatemporizzata.h \
     attivita/evento.h \
-    attivita/impegno.h \
+    attivita/lettura.h \
     attivita/promemoria.h \
     attivita/riunione.h \
     attivita/viaggio.h \

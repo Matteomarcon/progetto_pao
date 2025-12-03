@@ -1,13 +1,11 @@
 #ifndef EVENTO_H
 #define EVENTO_H
 
-#include "attivita/Attivita.h"
+#include "attivita/AttivitaTemporizzata.h"
 
-class Evento : public Attivita {
+class Evento : public AttivitaTemporizzata {
 private:
-    QDateTime dataInizio;
-    QDateTime dataFine;
-    QString luogo;
+
 public:
     Evento();
 };
