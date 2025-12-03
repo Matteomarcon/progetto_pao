@@ -11,6 +11,11 @@ CONFIG += c++17
 
 SOURCES += \
     attivita/Attivita.cpp \
+    attivita/evento.cpp \
+    attivita/impegno.cpp \
+    attivita/promemoria.cpp \
+    attivita/riunione.cpp \
+    attivita/viaggio.cpp \
     gui/Mainwindow.cpp \
     json/JsonHandler.cpp \
     main.cpp \
@@ -20,6 +25,11 @@ HEADERS += \
     attivita/Attivita.h \
     attivita/VisitorInterface.h \
     attivita/VisitorModifica.h \
+    attivita/evento.h \
+    attivita/impegno.h \
+    attivita/promemoria.h \
+    attivita/riunione.h \
+    attivita/viaggio.h \
     gui/Mainwindow.h \
     json/JsonHandler.h \
     xml/XMLHandler.h
