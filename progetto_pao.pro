@@ -18,10 +18,12 @@ SOURCES += \
     attivita/promemoria.cpp \
     attivita/riunione.cpp \
     attivita/viaggio.cpp \
-    gui/Mainwindow.cpp \
-    json/JsonHandler.cpp \
+    gui/mainwindow.cpp \
+    gui/visitorlista.cpp \
+    gui/vistalistaattivita.cpp \
+    json/GestoreJson.cpp \
     main.cpp \
-    xml/XMLHandler.cpp
+    xml/GestoreXml.cpp
 
 HEADERS += \
     attivita/VisitorInterface.h \
@@ -34,12 +36,14 @@ HEADERS += \
     attivita/promemoria.h \
     attivita/riunione.h \
     attivita/viaggio.h \
-    gui/Mainwindow.h \
-    json/JsonHandler.h \
-    xml/XMLHandler.h
+    gui/mainwindow.h \
+    gui/visitorlista.h \
+    gui/vistalistaattivita.h \
+    json/GestoreJson.h \
+    xml/GestoreXml.h
 
 FORMS += \
-    gui/Mainwindow.ui
+    gui/mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

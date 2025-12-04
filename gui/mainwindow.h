@@ -5,8 +5,12 @@
 #include <QStackedWidget>
 #include <QStyle>
 #include <QToolBar>
+#include <QSplitter>
 
-#include "Attivita/attivita.h"
+#include "attivita/attivita.h"
+#include "Json/GestoreJson.h"
+#include "xml/GestoreXml.h"
+#include "vistalistaattivita.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -30,11 +34,11 @@ private slots:
 private:
     QList<Attivita*> listaAttivita;
     QToolBar* barraStrumenti;
-    QStackedWidget stack;
+    QStackedWidget* stack;
     QString percorsoJson;
     QString percorsoXML;
     //pannelloRicerca* pannelloRicerca;
-    //vistaLista* vistaLista;
+    VistaListaAttivita* vistaListaAttivita;
     //vistaDettagli* vistaDettagli;
     //vistaModifica* vistaModifica;
     //vistaCreazione* vistaCreazione;
