@@ -6,3 +6,15 @@ Promemoria::Promemoria(QString titolo, QString descrizioneBreve, QDateTime dataC
 QString Promemoria::getNota() const {return nota;}
 
 void Promemoria::setNota(QString nota) {this->nota = nota;}
+
+void Promemoria::accept(VisitorInterface& visitor){
+    visitor.visit(*this);
+}
+void Promemoria::accept(VisitorModifica& visitor){
+    visitor.visit(*this);
+}
+
+void Promemoria::toJson(QJsonObject& obj) const {
+}
+void Promemoria::toXml(QDomElement& elm) const {
+}

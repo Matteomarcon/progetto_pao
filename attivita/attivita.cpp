@@ -12,3 +12,4 @@ void Attivita::setTitolo(QString titolo) {this->titolo = titolo;}
 void Attivita::setDescrizioneBreve(QString descrizioneBreve) {this->descrizioneBreve = descrizioneBreve;}
 void Attivita::setDataCreazione(QDateTime dataCreazione) {this->dataCreazione = dataCreazione;}
 void Attivita::setUltimaModifica(QDateTime ultimaModifica) {this->ultimaModifica = ultimaModifica;}
+

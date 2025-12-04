@@ -15,6 +15,12 @@ public:
     QString getLuogoPartenza() const;
     void setMezzoDiTrasporto(QString);
     void setLuogoPartenza(QString);
+
+    virtual void accept(VisitorInterface&);
+    virtual void accept(VisitorModifica&);
+
+    virtual void toJson(QJsonObject&) const;
+    virtual void toXml(QDomElement&) const;
 };
 
 #endif // VIAGGIO_H

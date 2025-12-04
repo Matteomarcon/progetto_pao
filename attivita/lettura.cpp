@@ -10,3 +10,15 @@ QString Lettura::getLingua() const {return lingua;}
 void Lettura::setAutore(QString autore) {this->autore = autore;}
 void Lettura::setPagine(int pagine) {this->pagine = pagine;}
 void Lettura::setLingua(QString lingua) {this->lingua = lingua;}
+
+void Lettura::accept(VisitorInterface& visitor){
+    visitor.visit(*this);
+}
+void Lettura::accept(VisitorModifica& visitor){
+    visitor.visit(*this);
+}
+
+void Lettura::toJson(QJsonObject& obj) const {
+}
+void Lettura::toXml(QDomElement& elm) const {
+}

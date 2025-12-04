@@ -11,7 +11,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     vistaListaAttivita = new VistaListaAttivita(listaAttivita, this);
     vistaVuota = new QWidget(this);
 
-    stack->addWidget(vistaListaAttivita);
     stack->addWidget(vistaVuota);
     stack->setCurrentIndex(0);
 

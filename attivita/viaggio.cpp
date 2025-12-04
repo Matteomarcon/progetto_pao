@@ -8,3 +8,15 @@ QString Viaggio::getLuogoPartenza() const {return luogoPartenza;}
 
 void Viaggio::setMezzoDiTrasporto(QString mezzoDiTrasporto) {this->mezzoDiTrasporto = mezzoDiTrasporto;}
 void Viaggio::setLuogoPartenza(QString luogoPartenza) {this->luogoPartenza = luogoPartenza;}
+
+void Viaggio::accept(VisitorInterface& visitor){
+    visitor.visit(*this);
+}
+void Viaggio::accept(VisitorModifica& visitor){
+    visitor.visit(*this);
+}
+
+void Viaggio::toJson(QJsonObject& obj) const {
+}
+void Viaggio::toXml(QDomElement& elm) const {
+}

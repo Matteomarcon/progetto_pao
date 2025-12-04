@@ -11,18 +11,18 @@ QListWidgetItem* VisitorLista::getItem(){
 }
 
 void VisitorLista::visit(const Evento& evento){
-    item = new QListWidgetItem(QIcon("list_img/book.jpeg"), evento.getTitolo());
+    item = new QListWidgetItem(QIcon("../../icone/aggiungi.png"), evento.getTitolo());
 }
 void VisitorLista::visit(const Lettura& lettura){
-    item = new QListWidgetItem(QIcon("list_img/book.jpeg"), lettura.getTitolo());
+    item = new QListWidgetItem(QIcon("../../icone/aggiungi.png"), lettura.getTitolo());
 }
 void VisitorLista::visit(const Promemoria& promemoria){
-    item = new QListWidgetItem(QIcon("list_img/movie.png"), promemoria.getTitolo());
+    item = new QListWidgetItem(QIcon("../../icone/aggiungi.png"), promemoria.getTitolo());
 }
 void VisitorLista::visit(const Riunione& riunione){
-    item = new QListWidgetItem(QIcon("list_img/album.jpeg"), riunione.getTitolo());
+    item = new QListWidgetItem(QIcon("../../icone/aggiungi.png"), riunione.getTitolo());
 }
 void VisitorLista::visit(const Viaggio& viaggio){
-    item = new QListWidgetItem(QIcon("list_img/comic.png"), viaggio.getTitolo());
+    item = new QListWidgetItem(QIcon("../../icone/aggiungi.png"), viaggio.getTitolo());
 
 }

@@ -8,3 +8,15 @@ QString Evento::getLuogo() const {return luogo;}
 
 void Evento::setOrganizzatore(QString organizzatore) {this->organizzatore = organizzatore;}
 void Evento::setLuogo(QString luogo) {this->luogo = luogo;}
+
+void Evento::accept(VisitorInterface& visitor){
+    visitor.visit(*this);
+}
+void Evento::accept(VisitorModifica& visitor){
+    visitor.visit(*this);
+}
+
+void Evento::toJson(QJsonObject& obj) const {
+}
+void Evento::toXml(QDomElement& elm) const {
+}

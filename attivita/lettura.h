@@ -18,6 +18,12 @@ public:
     void setAutore(QString);
     void setPagine(int);
     void setLingua(QString);
+
+    virtual void accept(VisitorInterface&);
+    virtual void accept(VisitorModifica&);
+
+    virtual void toJson(QJsonObject&) const;
+    virtual void toXml(QDomElement&) const;
 };
 
 #endif // LETTURA_H
