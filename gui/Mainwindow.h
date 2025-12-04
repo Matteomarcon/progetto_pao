@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 
-#include "Attivita/Attivita.h"
+#include "Attivita/attivita.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT

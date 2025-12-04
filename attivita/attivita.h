@@ -11,19 +11,22 @@ class Attivita {
 private:
     //Attributi da definire
     QString titolo;
-    QString descrizione;
+    QString descrizioneBreve;
     QDateTime dataCreazione;
+    QDateTime ultimaModifica;
 public:
-    Attivita(QString titolo, QString descrizione, QDateTime dataCreazione);
+    Attivita(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica);
     virtual ~Attivita() {};
 
     //Metodi get e set da inserire in base agli attributi
     QString getTitolo() const;
-    QString getDescrizione() const;
+    QString getDescrizioneBreve() const;
     QDateTime getDataCreazione() const;
+    QDateTime getUltimaModifica() const;
     void setTitolo(QString);
-    void setDescrizione(QString);
+    void setDescrizioneBreve(QString);
     void setDataCreazione(QDateTime);
+    void setUltimaModifica(QDateTime);
 
     virtual void accept(VisitorInterface&) = 0;
     virtual void accept(VisitorModifica&) = 0;
@@ -32,5 +35,3 @@ public:
 };
 
 #endif // ATTIVITA_H
-
-//Idea figli: ramo attività a calendario (evento, riunione, viaggio) e ramo "da fare" (promemoria, scadenza)

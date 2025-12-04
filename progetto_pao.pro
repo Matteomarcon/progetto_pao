@@ -10,9 +10,9 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    attivita/Attivita.cpp \
-    attivita/attivitanontemporizzata.cpp \
-    attivita/attivitatemporizzata.cpp \
+    attivita/attivita.cpp \
+    attivita/attivitalibera.cpp \
+    attivita/attivitaprogrammata.cpp \
     attivita/evento.cpp \
     attivita/lettura.cpp \
     attivita/promemoria.cpp \
@@ -24,11 +24,11 @@ SOURCES += \
     xml/XMLHandler.cpp
 
 HEADERS += \
-    attivita/Attivita.h \
     attivita/VisitorInterface.h \
     attivita/VisitorModifica.h \
-    attivita/attivitanontemporizzata.h \
-    attivita/attivitatemporizzata.h \
+    attivita/attivita.h \
+    attivita/attivitalibera.h \
+    attivita/attivitaprogrammata.h \
     attivita/evento.h \
     attivita/lettura.h \
     attivita/promemoria.h \

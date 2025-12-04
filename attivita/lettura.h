@@ -1,11 +1,16 @@
 #ifndef LETTURA_H
 #define LETTURA_H
 
-#include "attivitanontemporizzata.h"
+#include "attivitalibera.h"
 
-class Lettura : public AttivitaNonTemporizzata {
+class Lettura : public AttivitaLibera {
+private:
+    QString autore;
+    int pagine;
+    QString lingua;
 public:
-    Lettura();
+    Lettura(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, int stato, int priorita, QString autore, int pagine, QString lingua);
+    virtual ~Lettura() {};
 };
 
 #endif // LETTURA_H
