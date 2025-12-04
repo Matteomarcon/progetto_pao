@@ -3,13 +3,15 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
+#include <QStyle>
+#include <QToolBar>
 
 #include "Attivita/attivita.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 private slots:
-    void mostraDettagli(Attivita*);
+    /*void mostraDettagli(Attivita*);
     void mostraViewModifica(Attivita*);
     void salvaModifica(Attivita*);
     void annulla();
@@ -23,7 +25,7 @@ private slots:
     void salvaNuovoJson();
     void salvaXML();
     void caricaXML();
-    void salvaNuovoXML();
+    void salvaNuovoXML();*/
 
 private:
     QList<Attivita*> listaAttivita;
