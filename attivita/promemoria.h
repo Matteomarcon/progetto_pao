@@ -9,6 +9,9 @@ private:
 public:
     Promemoria(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, int stato, int priorita, QString nota);
     virtual ~Promemoria() {};
+
+    QString getNota() const;
+    void setNota(QString);
 };
 
 #endif // PROMEMORIA_H

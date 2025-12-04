@@ -9,7 +9,6 @@
 
 class Attivita {
 private:
-    //Attributi da definire
     QString titolo;
     QString descrizioneBreve;
     QDateTime dataCreazione;
@@ -18,7 +17,6 @@ public:
     Attivita(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica);
     virtual ~Attivita() {};
 
-    //Metodi get e set da inserire in base agli attributi
     QString getTitolo() const;
     QString getDescrizioneBreve() const;
     QDateTime getDataCreazione() const;
