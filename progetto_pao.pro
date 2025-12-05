@@ -20,6 +20,7 @@ SOURCES += \
     attivita/viaggio.cpp \
     gui/mainwindow.cpp \
     gui/visitorlista.cpp \
+    gui/vistacreazioneattivita.cpp \
     gui/vistalistaattivita.cpp \
     json/GestoreJson.cpp \
     main.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     attivita/viaggio.h \
     gui/mainwindow.h \
     gui/visitorlista.h \
+    gui/vistacreazioneattivita.h \
     gui/vistalistaattivita.h \
     json/GestoreJson.h \
     xml/GestoreXml.h

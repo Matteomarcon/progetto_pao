@@ -11,6 +11,7 @@
 #include "Json/GestoreJson.h"
 #include "xml/GestoreXml.h"
 #include "vistalistaattivita.h"
+#include "vistacreazioneattivita.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -41,7 +42,7 @@ private:
     VistaListaAttivita* vistaListaAttivita;
     //vistaDettagli* vistaDettagli;
     //vistaModifica* vistaModifica;
-    //vistaCreazione* vistaCreazione;
+    VistaCreazioneAttivita* vistaCreazioneAttivita;
     QWidget* vistaVuota;
     bool modificheNonSalvate;
 

@@ -9,8 +9,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 
     stack = new QStackedWidget(this);
     vistaListaAttivita = new VistaListaAttivita(listaAttivita, this);
+    vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
     vistaVuota = new QWidget(this);
 
+    stack->addWidget(vistaCreazioneAttivita);
     stack->addWidget(vistaVuota);
     stack->setCurrentIndex(0);
 
