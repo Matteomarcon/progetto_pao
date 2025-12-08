@@ -1,11 +1,40 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
+    this->setWindowTitle("Gestore Attività Personali");
+    this->setWindowIcon(QIcon("../../icone/iconaApp.png"));
+
+    //Sistemare icone, shortcut, ordine della barra degli strumenti
+
     QAction* creaAttivita = new QAction(QIcon("../../icone/aggiungi.png"), "Crea una nuova attività (CTRL + N)", this);
     creaAttivita->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
 
+    QLabel* labelJson = new QLabel("Json:", this);
+    QAction* apriJson = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
+    apriJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+    QAction* salvaJson = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
+    salvaJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+    QAction* salvaNuovoJson = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
+    salvaNuovoJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+
+    QLabel* labelXml = new QLabel("Xml:", this);
+    QAction* apriXml = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
+    apriXml->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+    QAction* salvaXml = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
+    salvaXml->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+    QAction* salvaNuovoXml = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
+    salvaNuovoXml->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+
     barraStrumenti = addToolBar("barraStrumenti");
     barraStrumenti->addAction(creaAttivita);
+    barraStrumenti->addWidget(labelJson);
+    barraStrumenti->addAction(apriJson);
+    barraStrumenti->addAction(salvaJson);
+    barraStrumenti->addAction(salvaNuovoJson);
+    barraStrumenti->addWidget(labelXml);
+    barraStrumenti->addAction(apriXml);
+    barraStrumenti->addAction(salvaXml);
+    barraStrumenti->addAction(salvaNuovoXml);
 
     stack = new QStackedWidget(this);
     vistaListaAttivita = new VistaListaAttivita(listaAttivita, this);

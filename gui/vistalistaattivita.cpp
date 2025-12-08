@@ -2,7 +2,7 @@
 
 VistaListaAttivita::VistaListaAttivita(QList<Attivita*> listaAttivita, QWidget *parent): QWidget{parent}, listaAttivita(listaAttivita) {
     widgetLista = new QListWidget(this);
-    widgetLista->setUniformItemSizes(true);
+    /*widgetLista->setUniformItemSizes(true);
     widgetLista->setIconSize(QSize(50, 50));
     widgetLista->setStyleSheet(R"(
         QListWidget::item {
@@ -22,7 +22,7 @@ VistaListaAttivita::VistaListaAttivita(QList<Attivita*> listaAttivita, QWidget *
             outline: none;
         }
     )");
-    widgetLista->setCursor(Qt::PointingHandCursor);
+    widgetLista->setCursor(Qt::PointingHandCursor);*/
 
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
     layoutPrincipale->addWidget(widgetLista);

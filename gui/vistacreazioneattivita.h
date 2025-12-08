@@ -6,6 +6,8 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QLineEdit>
+#include <QSpinBox>
 
 #include "attivita/attivita.h"
 
@@ -13,6 +15,7 @@ class VistaCreazioneAttivita : public QWidget {
     Q_OBJECT
 private:
     QComboBox* tipoAttivita;
+    QMap<QString, QWidget*> campiForm;
     QVBoxLayout* layoutForm = nullptr;
     QPushButton* bottoneSalva;
     QPushButton* bottoneAnnulla;
@@ -35,8 +38,6 @@ signals:
 
 private:
     QString imagePath;
-    QMap<QString, QWidget*> widgets;
-
 public:
     void clearLayout(QLayout*);
     Component* applyChanges();
