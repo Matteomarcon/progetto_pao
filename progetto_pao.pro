@@ -19,9 +19,14 @@ SOURCES += \
     attivita/riunione.cpp \
     attivita/viaggio.cpp \
     gui/mainwindow.cpp \
+    gui/visitordettagliattivita.cpp \
     gui/visitorlista.cpp \
+    gui/visitormodificaattivita.cpp \
+    gui/visitorvistamodificaattivita.cpp \
     gui/vistacreazioneattivita.cpp \
+    gui/vistadettagliattivita.cpp \
     gui/vistalistaattivita.cpp \
+    gui/vistamodificaattivita.cpp \
     json/GestoreJson.cpp \
     main.cpp \
     xml/GestoreXml.cpp
@@ -38,9 +43,14 @@ HEADERS += \
     attivita/riunione.h \
     attivita/viaggio.h \
     gui/mainwindow.h \
+    gui/visitordettagliattivita.h \
     gui/visitorlista.h \
+    gui/visitormodificaattivita.h \
+    gui/visitorvistamodificaattivita.h \
     gui/vistacreazioneattivita.h \
+    gui/vistadettagliattivita.h \
     gui/vistalistaattivita.h \
+    gui/vistamodificaattivita.h \
     json/GestoreJson.h \
     xml/GestoreXml.h
 
