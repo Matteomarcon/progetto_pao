@@ -9,20 +9,17 @@
 class VistaModificaAttivita : public QWidget {
     Q_OBJECT
 signals:
-    void annullaModifica();
-    void salvaModifica(Attivita*);
+    void annulla();
+    void salva(Attivita*);
 private:
     Attivita* attivita;
     QPushButton* bottoneModifica;
     QPushButton* bottoneElimina;
+    void salvaModifica();
 public:
     VistaModificaAttivita(QWidget *parent = nullptr);
     void setAttivita(Attivita*);
-    void setEvento(Evento*);
-    void setLettura(Lettura*);
-    void setPromemoria(Promemoria*);
-    void setRiunione(Riunione*);
-    void setViaggio(Viaggio*);
+    void pulisciLayout(QLayout*);
 };
 
 #endif // VISTAMODIFICAATTIVITA_H

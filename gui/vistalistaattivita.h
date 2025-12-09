@@ -9,6 +9,8 @@
 
 class VistaListaAttivita : public QWidget {
     Q_OBJECT
+signals:
+    void itemSelezionato(Attivita* a);
 private:
     QList<Attivita*> listaAttivita;
     QListWidget* widgetLista;
@@ -18,8 +20,6 @@ public:
     /*void filterItems(const QString&, const QSet<QString>&, const int&, const int&);
     void filterDate(const int&);
     void refresh(const QList<Component*>&);*/
-signals:
-    void itemSelezionato(Attivita* a);
 };
 
 #endif // VISTALISTAATTIVITA_H

@@ -13,6 +13,9 @@
 
 class VistaCreazioneAttivita : public QWidget {
     Q_OBJECT
+signals:
+    void annulla();
+    void salva(Attivita*);
 private:
     QComboBox* tipoAttivita;
     QMap<QString, QWidget*> campiForm;
@@ -29,19 +32,8 @@ public:
     void creaPromemoria();
     void creaRiunione();
     void creaViaggio();
-signals:
-    void annullaCreazione();
-    void salvaCreazione(Attivita*);
+    void pulisciLayout(QLayout*);
+    Attivita* creaOggettoAttivita();
 };
-
-/*Potrebbe servire altro:
-
-private:
-    QString imagePath;
-public:
-    void clearLayout(QLayout*);
-    Component* applyChanges();
-};*/
-
 
 #endif // VISTACREAZIONEATTIVITA_H

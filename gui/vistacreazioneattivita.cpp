@@ -72,3 +72,11 @@ void VistaCreazioneAttivita::creaViaggio() {
     creaAttivitaProgrammata();
 
 }
+
+void VistaCreazioneAttivita::pulisciLayout(QLayout*) {
+
+}
+
+Attivita* VistaCreazioneAttivita::creaOggettoAttivita() {
+
+}
