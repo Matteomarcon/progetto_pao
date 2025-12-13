@@ -9,7 +9,7 @@ private:
     int pagine;
     QString lingua;
 public:
-    Lettura(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, int stato, int priorita, QString autore, int pagine, QString lingua);
+    Lettura(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, QString stato, int priorita, QString autore, int pagine, QString lingua);
     virtual ~Lettura() {};
 
     QString getAutore() const;

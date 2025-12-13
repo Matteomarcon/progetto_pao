@@ -8,8 +8,14 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QSpinBox>
+#include <QDateTimeEdit>
 
 #include "attivita/attivita.h"
+#include "attivita/evento.h"
+#include "attivita/lettura.h"
+#include "attivita/promemoria.h"
+#include "attivita/riunione.h"
+#include "attivita/viaggio.h"
 
 class VistaCreazioneAttivita : public QWidget {
     Q_OBJECT

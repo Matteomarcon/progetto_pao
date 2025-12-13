@@ -5,15 +5,15 @@
 
 class AttivitaLibera : public Attivita {
 private:
-    int stato;
+    QString stato;
     int priorita;
 public:
-    AttivitaLibera(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, int stato, int priorita);
+    AttivitaLibera(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, QString stato, int priorita);
     virtual ~AttivitaLibera() {};
 
-    int getStato() const;
+    QString getStato() const;
     int getPriorita() const;
-    void setStato(int);
+    void setStato(QString);
     void setPriorita(int);
 };
 

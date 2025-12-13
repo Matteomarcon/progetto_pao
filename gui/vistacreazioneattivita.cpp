@@ -1,5 +1,4 @@
 #include "vistacreazioneattivita.h"
-#include <QDateTimeEdit>
 
 VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent} {
     QLabel* labelTitolo = new QLabel("Crea una nuova attività:");
@@ -168,6 +167,52 @@ void VistaCreazioneAttivita::pulisciLayout(QLayout* layout) {
     campiForm.clear();
 }
 
-Attivita* VistaCreazioneAttivita::creaOggettoAttivita() {
-
+Attivita* VistaCreazioneAttivita::creaOggettoAttivita(){
+    if (tipoAttivita->currentText() == "Evento") {
+        return new Evento(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
+                        qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
+                        QDateTime::currentDateTime(), //Da sistemare con data creazione
+                        QDateTime::currentDateTime(),
+                        qobject_cast<QDateTimeEdit*>(campiForm["datainizio"])->dateTime(),
+                        qobject_cast<QDateTimeEdit*>(campiForm["datafine"])->dateTime(),
+                        qobject_cast<QLineEdit*>(campiForm["organizzatore"])->text(),
+                        qobject_cast<QLineEdit*>(campiForm["luogo"])->text());
+    } else if (tipoAttivita->currentText() == "Lettura") {
+        return new Lettura(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
+                           qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
+                           QDateTime::currentDateTime(), //Da sistemare con data creazione
+                           QDateTime::currentDateTime(),
+                           qobject_cast<QComboBox*>(campiForm["stato"])->currentText(),
+                           qobject_cast<QSpinBox*>(campiForm["priorita"])->value(),
+                           qobject_cast<QLineEdit*>(campiForm["autore"])->text(),
+                           qobject_cast<QSpinBox*>(campiForm["pagine"])->value(),
+                           qobject_cast<QLineEdit*>(campiForm["lingua"])->text());
+    } else if (tipoAttivita->currentText() == "Promemoria") {
+        return new Promemoria(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
+                              qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
+                              QDateTime::currentDateTime(), //Da sistemare con data creazione
+                              QDateTime::currentDateTime(),
+                              qobject_cast<QComboBox*>(campiForm["stato"])->currentText(),
+                              qobject_cast<QSpinBox*>(campiForm["priorita"])->value(),
+                              qobject_cast<QLineEdit*>(campiForm["nota"])->text());
+    } else if (tipoAttivita->currentText() == "Riunione") {
+        return new Riunione(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
+                            qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
+                            QDateTime::currentDateTime(), //Da sistemare con data creazione
+                            QDateTime::currentDateTime(),
+                            qobject_cast<QDateTimeEdit*>(campiForm["datainizio"])->dateTime(),
+                            qobject_cast<QDateTimeEdit*>(campiForm["datafine"])->dateTime(),
+                            qobject_cast<QLineEdit*>(campiForm["ordinedelgiorno"])->text(),
+                            qobject_cast<QLineEdit*>(campiForm["url"])->text());
+    } else {
+        return new Viaggio(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
+                        qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
+                        QDateTime::currentDateTime(), //Da sistemare con data creazione
+                        QDateTime::currentDateTime(),
+                        qobject_cast<QDateTimeEdit*>(campiForm["datainizio"])->dateTime(),
+                        qobject_cast<QDateTimeEdit*>(campiForm["datafine"])->dateTime(),
+                        qobject_cast<QLineEdit*>(campiForm["mezzoditrasporto"])->text(),
+                        qobject_cast<QLineEdit*>(campiForm["luogopartenza"])->text());
+    }
 }
+

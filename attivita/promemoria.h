@@ -7,7 +7,7 @@ class Promemoria : public AttivitaLibera {
 private:
     QString nota;
 public:
-    Promemoria(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, int stato, int priorita, QString nota);
+    Promemoria(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica, QString stato, int priorita, QString nota);
     virtual ~Promemoria() {};
 
     QString getNota() const;
