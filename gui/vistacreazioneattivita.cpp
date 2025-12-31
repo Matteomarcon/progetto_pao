@@ -5,6 +5,7 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     labelTitolo->setAlignment(Qt::AlignCenter);
 
     tipoAttivita = new QComboBox();
+    tipoAttivita->setPlaceholderText("Seleziona tipo attività");
     tipoAttivita->addItem("Evento");
     tipoAttivita->addItem("Lettura");
     tipoAttivita->addItem("Promemoria");
@@ -25,26 +26,45 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     layoutPrincipale->addLayout(layoutForm);
     layoutPrincipale->addStretch();
     layoutPrincipale->addLayout(layoutBottoni);
+
+    bottoneSalva->hide();
+    bottoneAnnulla->hide();
+
+    connect(tipoAttivita, &QComboBox::activated, this, [=](int index) {
+        bottoneSalva->show();
+        bottoneAnnulla->show();
+
+        QString attivitaSelezionata = tipoAttivita->itemText(index);
+
+        if (attivitaSelezionata == "Evento") creaEvento();
+        else if (attivitaSelezionata == "Lettura") creaLettura();
+        else if (attivitaSelezionata == "Promemoria") creaPromemoria();
+        else if (attivitaSelezionata == "Riunione") creaRiunione();
+        else if (attivitaSelezionata == "Viaggio") creaViaggio();
+    });
+
+    connect(bottoneSalva, &QPushButton::clicked, this, [this]() {
+        Attivita *attivita = creaOggettoAttivita();
+        pulisciLayout(layoutForm);
+        tipoAttivita->setCurrentIndex(-1);
+        bottoneSalva->hide();
+        bottoneAnnulla->hide();
+        emit salva(attivita);
+    });
+
+    connect(bottoneAnnulla, &QPushButton::clicked, this, [this]() {
+        pulisciLayout(layoutForm);
+        tipoAttivita->setCurrentIndex(-1);
+        bottoneSalva->hide();
+        bottoneAnnulla->hide();
+        emit annulla();
+    });
+
 }
 
 void VistaCreazioneAttivita::creaAttivita() {
     pulisciLayout(layoutForm);
-    campiForm.clear();
-    QString tipo = tipoAttivita->currentText();
 
-    if (tipo == "Evento") {
-        creaEvento();
-    } else if (tipo == "Lettura") {
-        creaLettura();
-    } else if (tipo == "Promemoria") {
-        creaPromemoria();
-    } else if (tipo == "Riunione") {
-        creaRiunione();
-    } else if (tipo == "Viaggio") {
-        creaViaggio();
-    }
-}
-void VistaCreazioneAttivita::creaAttivitaProgrammata() {
     campiForm["titolo"] = new QLineEdit();
     layoutForm->addWidget(new QLabel("Titolo"));
     layoutForm->addWidget(campiForm["titolo"]);
@@ -52,6 +72,9 @@ void VistaCreazioneAttivita::creaAttivitaProgrammata() {
     campiForm["descrizionebreve"] = new QLineEdit();
     layoutForm->addWidget(new QLabel("Breve descrizione"));
     layoutForm->addWidget(campiForm["descrizionebreve"]);
+}
+void VistaCreazioneAttivita::creaAttivitaProgrammata() {
+    creaAttivita();
 
     QDateTimeEdit* dataInizio = new QDateTimeEdit();
     dataInizio->setCalendarPopup(true);
@@ -68,13 +91,7 @@ void VistaCreazioneAttivita::creaAttivitaProgrammata() {
     layoutForm->addWidget(campiForm["datafine"]);
 }
 void VistaCreazioneAttivita::creaAttivitaLibera() {
-    campiForm["titolo"] = new QLineEdit();
-    layoutForm->addWidget(new QLabel("Titolo"));
-    layoutForm->addWidget(campiForm["titolo"]);
-
-    campiForm["descrizioneBreve"] = new QLineEdit();
-    layoutForm->addWidget(new QLabel("Breve descrizione"));
-    layoutForm->addWidget(campiForm["descrizionebreve"]);
+    creaAttivita();
 
     QComboBox* stato = new QComboBox();
     stato->addItem("Non iniziata");

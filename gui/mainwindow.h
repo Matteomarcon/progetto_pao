@@ -12,17 +12,13 @@
 #include "xml/GestoreXml.h"
 #include "vistalistaattivita.h"
 #include "vistacreazioneattivita.h"
+#include "vistadettagliattivita.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 private slots:
-    /*void mostraDettagli(Attivita*);
-    void mostraViewModifica(Attivita*);
-    void salvaModifica(Attivita*);
-    void annulla();
+    /*
     void chiudi();
-    void creaNuova();
-    void salvaNuova(Attivita*);
     void eliminaElemento(Attivita*);
 
     void salvaJson();
@@ -32,6 +28,14 @@ private slots:
     void caricaXML();
     void salvaNuovoXML();*/
 
+    void mostraVistaVuota();
+    void mostraVistaDettagli(Attivita*);
+    void mostraVistaCreazione();
+    void mostraVistaModifica(Attivita*);
+
+    void salvaCreazione(Attivita*);
+    void salvaModifica(Attivita*);
+
 private:
     QList<Attivita*> listaAttivita;
     QToolBar* barraStrumenti;
@@ -40,7 +44,7 @@ private:
     QString percorsoXML;
     //pannelloRicerca* pannelloRicerca;
     VistaListaAttivita* vistaListaAttivita;
-    //vistaDettagli* vistaDettagli;
+    VistaDettagliAttivita* vistaDettagliAttivita;
     //vistaModifica* vistaModifica;
     VistaCreazioneAttivita* vistaCreazioneAttivita;
     QWidget* vistaVuota;

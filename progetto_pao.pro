@@ -20,6 +20,7 @@ SOURCES += \
     attivita/viaggio.cpp \
     gui/mainwindow.cpp \
     gui/visitordettagliattivita.cpp \
+    gui/visitorlabel.cpp \
     gui/visitorlista.cpp \
     gui/visitormodificaattivita.cpp \
     gui/visitorvistamodificaattivita.cpp \
@@ -44,6 +45,7 @@ HEADERS += \
     attivita/viaggio.h \
     gui/mainwindow.h \
     gui/visitordettagliattivita.h \
+    gui/visitorlabel.h \
     gui/visitorlista.h \
     gui/visitormodificaattivita.h \
     gui/visitorvistamodificaattivita.h \

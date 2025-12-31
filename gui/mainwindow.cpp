@@ -37,13 +37,15 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     barraStrumenti->addAction(salvaNuovoXml);
 
     stack = new QStackedWidget(this);
-    vistaListaAttivita = new VistaListaAttivita(listaAttivita, this);
-    vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
     vistaVuota = new QWidget(this);
+    vistaListaAttivita = new VistaListaAttivita(listaAttivita, this);
+    vistaDettagliAttivita = new VistaDettagliAttivita(this);
+    vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
 
-    stack->addWidget(vistaCreazioneAttivita);
     stack->addWidget(vistaVuota);
-    stack->setCurrentIndex(0);
+    stack->addWidget(vistaDettagliAttivita);
+    stack->addWidget(vistaCreazioneAttivita);
+    stack->setCurrentIndex(2); //Da mettere 0 in futuro
 
     QSplitter* divisore = new QSplitter(Qt::Horizontal, this);
 
@@ -67,11 +69,38 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     divisore->setStretchFactor(1,2);
 
     setCentralWidget(divisore);
+
+    connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::annulla, this, &MainWindow::mostraVistaVuota);
+    connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::salva, this, &MainWindow::salvaCreazione);
 }
 
 MainWindow::~MainWindow(){
     for (auto a : listaAttivita) delete a;
     listaAttivita.clear();
+}
+
+void MainWindow::mostraVistaVuota() {
+    stack->setCurrentIndex(0);
+}
+
+void MainWindow::mostraVistaDettagli(Attivita* a) {
+
+}
+
+void MainWindow::mostraVistaCreazione() {
+    stack->setCurrentIndex(1);
+}
+
+void MainWindow::mostraVistaModifica(Attivita* a) {
+
+}
+
+void MainWindow::salvaCreazione(Attivita* a) {
+
+}
+
+void MainWindow::salvaModifica(Attivita* a) {
+
 }
 
 /*void MainWindow::mostraDettagli(Attivita* attivita) {
