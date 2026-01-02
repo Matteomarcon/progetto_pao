@@ -6,6 +6,9 @@
 #include <QStyle>
 #include <QToolBar>
 #include <QSplitter>
+#include <QMenuBar>
+#include <QGuiApplication>
+#include <QScreen>
 
 #include "attivita/attivita.h"
 #include "Json/GestoreJson.h"
@@ -13,6 +16,7 @@
 #include "vistalistaattivita.h"
 #include "vistacreazioneattivita.h"
 #include "vistadettagliattivita.h"
+#include "vistamodificaattivita.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -39,13 +43,16 @@ private slots:
 private:
     QList<Attivita*> listaAttivita;
     QToolBar* barraStrumenti;
+    QMenu* menuApri;
+    QMenu* menuSalva;
+    QMenu* menuCrea;
     QStackedWidget* stack;
     QString percorsoJson;
     QString percorsoXML;
     //pannelloRicerca* pannelloRicerca;
     VistaListaAttivita* vistaListaAttivita;
     VistaDettagliAttivita* vistaDettagliAttivita;
-    //vistaModifica* vistaModifica;
+    VistaModificaAttivita* vistaModificaAttivita;
     VistaCreazioneAttivita* vistaCreazioneAttivita;
     QWidget* vistaVuota;
     bool modificheNonSalvate;

@@ -2,7 +2,12 @@
 #include "gui/visitorlabel.h"
 
 VistaDettagliAttivita::VistaDettagliAttivita(QWidget *parent) : QWidget{parent} {
+    labelTitolo = new QLabel();
+    QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
+    layoutPrincipale->addWidget(labelTitolo);
 
+    layout = new QVBoxLayout();
+    layoutPrincipale->addLayout(layout);
 
 }
 

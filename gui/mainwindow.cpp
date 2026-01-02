@@ -2,49 +2,68 @@
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     this->setWindowTitle("Gestore Attività Personali");
-    this->setWindowIcon(QIcon("../../icone/iconaApp.png"));
+    this->setWindowIcon(QIcon(":/icone/iconaApp.png"));
 
-    //Sistemare icone, shortcut, ordine della barra degli strumenti
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect screenGeometry = screen->availableGeometry();
+    this->resize(screenGeometry.width()/2, screenGeometry.height()/2);
+    this->move(screenGeometry.center() - this->rect().center());
 
-    QAction* creaAttivita = new QAction(QIcon("../../icone/aggiungi.png"), "Crea una nuova attività (CTRL + N)", this);
+    QAction* apriJson = new QAction(QIcon(":/icone/json_apri.png"), "Apri JSON", this);
+    apriJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
+    QAction* salvaJson = new QAction(QIcon(":/icone/json_salva.png"), "Salva JSON", this);
+    salvaJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
+    QAction* salvaNuovoJson = new QAction(QIcon(":/icone/json_salva_come.png"), "Salva come JSON", this);
+    salvaNuovoJson->setShortcut(QKeySequence(Qt::Key_F12));
+
+    QAction* apriXml = new QAction(QIcon(":/icone/xml_apri.png"), "Apri XML", this);
+    apriXml->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O));
+    QAction* salvaXml = new QAction(QIcon(":/icone/xml_salva.png"), "Salva XML", this);
+    salvaXml->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_S));
+    QAction* salvaNuovoXml = new QAction(QIcon(":/icone/xml_salva_come.png"), "Salva come XML", this);
+    salvaNuovoXml->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_F12));
+
+    QAction* creaAttivita = new QAction(QIcon(":/icone/attivita.png"), "Crea attività", this);
     creaAttivita->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
 
-    QLabel* labelJson = new QLabel("Json:", this);
-    QAction* apriJson = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
-    apriJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
-    QAction* salvaJson = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
-    salvaJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
-    QAction* salvaNuovoJson = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
-    salvaNuovoJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+    menuApri = menuBar()->addMenu("Apri");
+    menuApri->addAction(apriJson);
+    menuApri->addAction(apriXml);
 
-    QLabel* labelXml = new QLabel("Xml:", this);
-    QAction* apriXml = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
-    apriXml->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
-    QAction* salvaXml = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
-    salvaXml->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
-    QAction* salvaNuovoXml = new QAction(QIcon("../../icone/apriJson.png"), "Crea una nuova attività (CTRL + N)", this);
-    salvaNuovoXml->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_J));
+    menuSalva = menuBar()->addMenu("Salva");
+    menuSalva->addAction(salvaJson);
+    menuSalva->addAction(salvaNuovoJson);
+    menuSalva->addAction(salvaXml);
+    menuSalva->addAction(salvaNuovoXml);
+
+    menuCrea = menuBar()->addMenu("Crea");
+    menuCrea->addAction(creaAttivita);
 
     barraStrumenti = addToolBar("barraStrumenti");
-    barraStrumenti->addAction(creaAttivita);
-    barraStrumenti->addWidget(labelJson);
     barraStrumenti->addAction(apriJson);
     barraStrumenti->addAction(salvaJson);
     barraStrumenti->addAction(salvaNuovoJson);
-    barraStrumenti->addWidget(labelXml);
+    barraStrumenti->addSeparator();
     barraStrumenti->addAction(apriXml);
     barraStrumenti->addAction(salvaXml);
     barraStrumenti->addAction(salvaNuovoXml);
+    barraStrumenti->addSeparator();
+    barraStrumenti->addAction(creaAttivita);
+
+    barraStrumenti->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    barraStrumenti->setIconSize(QSize(72, 72));
 
     stack = new QStackedWidget(this);
     vistaVuota = new QWidget(this);
     vistaListaAttivita = new VistaListaAttivita(listaAttivita, this);
     vistaDettagliAttivita = new VistaDettagliAttivita(this);
     vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
+    vistaModificaAttivita = new VistaModificaAttivita(this);
 
     stack->addWidget(vistaVuota);
     stack->addWidget(vistaDettagliAttivita);
     stack->addWidget(vistaCreazioneAttivita);
+    stack->addWidget(vistaModificaAttivita);
     stack->setCurrentIndex(2); //Da mettere 0 in futuro
 
     QSplitter* divisore = new QSplitter(Qt::Horizontal, this);
@@ -69,9 +88,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     divisore->setStretchFactor(1,2);
 
     setCentralWidget(divisore);
-
+    connect(vistaListaAttivita, &VistaListaAttivita::itemSelezionato, this, &MainWindow::mostraVistaDettagli);
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::annulla, this, &MainWindow::mostraVistaVuota);
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::salva, this, &MainWindow::salvaCreazione);
+
+    connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
 }
 
 MainWindow::~MainWindow(){
@@ -84,27 +105,25 @@ void MainWindow::mostraVistaVuota() {
 }
 
 void MainWindow::mostraVistaDettagli(Attivita* a) {
-
-}
-
-void MainWindow::mostraVistaCreazione() {
+    vistaDettagliAttivita->setAttivita(a);
     stack->setCurrentIndex(1);
 }
 
-void MainWindow::mostraVistaModifica(Attivita* a) {
+void MainWindow::mostraVistaCreazione() {
+    stack->setCurrentIndex(2);
+}
 
+void MainWindow::mostraVistaModifica(Attivita* a) {
+    vistaModificaAttivita->setAttivita(a);
+    stack->setCurrentIndex(3);
 }
 
 void MainWindow::salvaCreazione(Attivita* a) {
-
+    listaAttivita.append(a);
+    vistaListaAttivita->aggiornaLista(listaAttivita);
+    stack->setCurrentIndex(0);
 }
 
 void MainWindow::salvaModifica(Attivita* a) {
 
 }
-
-/*void MainWindow::mostraDettagli(Attivita* attivita) {
-    //vistaDettagli->setAttivita(attivita);
-    stack.setCurrentIndex(0);
-
-}*/

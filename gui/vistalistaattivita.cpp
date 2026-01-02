@@ -24,15 +24,28 @@ VistaListaAttivita::VistaListaAttivita(QList<Attivita*> listaAttivita, QWidget *
     )");
     widgetLista->setCursor(Qt::PointingHandCursor);*/
 
+    aggiornaLista(listaAttivita);
+
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
     layoutPrincipale->addWidget(widgetLista);
     setLayout(layoutPrincipale);
 
-    /* chiamata a metodo refresh per creare la lista sui dati correnti
-    refresh(data);
+    connect(widgetLista, &QListWidget::itemClicked, this, [this](QListWidgetItem* item) {
+        if (mappaItemAttivita[item]) emit itemSelezionato(mappaItemAttivita[item]);
+    });
+}
 
-    connect(widgetList, &QListWidget::itemClicked, this, [this](QListWidgetItem* item) {
-        if (itemMap[item]) emit itemSelected(itemMap[item]);
-        else qDebug() << "Item not in map or null!";
-    });*/
+void VistaListaAttivita::aggiornaLista(const QList<Attivita*>& listaAggiornata) {
+    widgetLista->clear();
+    mappaItemAttivita.clear();
+
+    listaAttivita = listaAggiornata;
+
+    for (auto attivita : listaAttivita) {
+        VisitorListaAttivita visitor;
+        attivita->accept(visitor);
+        QListWidgetItem* item = visitor.getItem();
+        widgetLista->addItem(item);
+        mappaItemAttivita[item] = attivita;
+    }
 }

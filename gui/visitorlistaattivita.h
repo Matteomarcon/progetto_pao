@@ -1,5 +1,5 @@
-#ifndef VISITORLISTA_H
-#define VISITORLISTA_H
+#ifndef VISITORLISTAATTIVITA_H
+#define VISITORLISTAATTIVITA_H
 
 #include <QListWidgetItem>
 
@@ -10,7 +10,7 @@
 #include "attivita/riunione.h"
 #include "attivita/viaggio.h"
 
-class VisitorLista : public VisitorInterface {
+class VisitorListaAttivita : public VisitorInterface {
 private:
     QListWidgetItem* item;
 public:
@@ -23,4 +23,4 @@ public:
     virtual void visit(const Viaggio&);
 };
 
-#endif // VISITORLISTA_H
+#endif // VISITORLISTAATTIVITA_H

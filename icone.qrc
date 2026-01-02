@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icone/json_apri.png</file>
+        <file>icone/json_salva.png</file>
+        <file>icone/json_salva_come.png</file>
+        <file>icone/xml_apri.png</file>
+        <file>icone/xml_salva.png</file>
+        <file>icone/xml_salva_come.png</file>
+        <file>icone/iconaApp.png</file>
+        <file>icone/attivita.png</file>
+    </qresource>
+</RCC>

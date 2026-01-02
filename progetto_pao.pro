@@ -21,7 +21,7 @@ SOURCES += \
     gui/mainwindow.cpp \
     gui/visitordettagliattivita.cpp \
     gui/visitorlabel.cpp \
-    gui/visitorlista.cpp \
+    gui/visitorlistaattivita.cpp \
     gui/visitormodificaattivita.cpp \
     gui/visitorvistamodificaattivita.cpp \
     gui/vistacreazioneattivita.cpp \
@@ -46,7 +46,7 @@ HEADERS += \
     gui/mainwindow.h \
     gui/visitordettagliattivita.h \
     gui/visitorlabel.h \
-    gui/visitorlista.h \
+    gui/visitorlistaattivita.h \
     gui/visitormodificaattivita.h \
     gui/visitorvistamodificaattivita.h \
     gui/vistacreazioneattivita.h \
