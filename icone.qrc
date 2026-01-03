@@ -8,5 +8,10 @@
         <file>icone/xml_salva_come.png</file>
         <file>icone/iconaApp.png</file>
         <file>icone/attivita.png</file>
+        <file>icone/evento.png</file>
+        <file>icone/lettura.png</file>
+        <file>icone/promemoria.png</file>
+        <file>icone/riunione.png</file>
+        <file>icone/viaggio.png</file>
     </qresource>
 </RCC>

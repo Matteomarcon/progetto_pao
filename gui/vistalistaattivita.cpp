@@ -2,8 +2,10 @@
 
 VistaListaAttivita::VistaListaAttivita(QList<Attivita*> listaAttivita, QWidget *parent): QWidget{parent}, listaAttivita(listaAttivita) {
     widgetLista = new QListWidget(this);
+    widgetLista->setIconSize(QSize(48, 48));
+
     /*widgetLista->setUniformItemSizes(true);
-    widgetLista->setIconSize(QSize(50, 50));
+    widgetLista->setCursor(Qt::PointingHandCursor);
     widgetLista->setStyleSheet(R"(
         QListWidget::item {
             background-color: white;
@@ -21,8 +23,7 @@ VistaListaAttivita::VistaListaAttivita(QList<Attivita*> listaAttivita, QWidget *
         QListWidget::item:focus {
             outline: none;
         }
-    )");
-    widgetLista->setCursor(Qt::PointingHandCursor);*/
+    )"); */
 
     aggiornaLista(listaAttivita);
 
