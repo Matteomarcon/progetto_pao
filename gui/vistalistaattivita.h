@@ -21,6 +21,7 @@ public:
     VistaListaAttivita(QList<Attivita*>, QWidget *parent = nullptr);
 
     void aggiornaLista(const QList<Attivita*>&);
+    void deseleziona();
 
     //void filterItems(const QString&, const QSet<QString>&, const int&, const int&);
     //void filterDate(const int&);

@@ -13,7 +13,7 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     tipoAttivita->addItem("Viaggio");
 
     QHBoxLayout* layoutBottoni = new QHBoxLayout;
-    bottoneSalva = new QPushButton("Crea Attività");
+    bottoneSalva = new QPushButton("Crea attività");
     bottoneAnnulla = new QPushButton("Annulla");
 
     layoutBottoni->addWidget(bottoneSalva);

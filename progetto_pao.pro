@@ -25,10 +25,11 @@ SOURCES += \
     gui/visitormodificaattivita.cpp \
     gui/visitorvistamodificaattivita.cpp \
     gui/vistacreazioneattivita.cpp \
+    gui/vistadefault.cpp \
     gui/vistadettagliattivita.cpp \
     gui/vistalistaattivita.cpp \
     gui/vistamodificaattivita.cpp \
-    json/GestoreJson.cpp \
+    json/gestorejson.cpp \
     main.cpp \
     xml/GestoreXml.cpp
 
@@ -50,10 +51,11 @@ HEADERS += \
     gui/visitormodificaattivita.h \
     gui/visitorvistamodificaattivita.h \
     gui/vistacreazioneattivita.h \
+    gui/vistadefault.h \
     gui/vistadettagliattivita.h \
     gui/vistalistaattivita.h \
     gui/vistamodificaattivita.h \
-    json/GestoreJson.h \
+    json/gestorejson.h \
     xml/GestoreXml.h
 
 FORMS += \

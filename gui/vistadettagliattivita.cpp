@@ -2,20 +2,35 @@
 #include "gui/visitorlabel.h"
 
 VistaDettagliAttivita::VistaDettagliAttivita(QWidget *parent) : QWidget{parent} {
-    labelTitolo = new QLabel();
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
-    layoutPrincipale->addWidget(labelTitolo);
-
+    labelTitolo = new QLabel();
+    labelTitolo->setAlignment(Qt::AlignCenter);
     layout = new QVBoxLayout();
-    layoutPrincipale->addLayout(layout);
 
+    QHBoxLayout* layoutBottoni = new QHBoxLayout;
+    bottoneElimina = new QPushButton("Elimina attività");
+    bottoneModifica = new QPushButton("Modifica attività");
+    bottoneChiudi = new QPushButton("Chiudi dettaglio");
+
+    layoutBottoni->addWidget(bottoneElimina);
+    layoutBottoni->addWidget(bottoneModifica);
+    layoutBottoni->addWidget(bottoneChiudi);
+
+    layoutPrincipale->addWidget(labelTitolo);
+    layoutPrincipale->addLayout(layout);
+    layoutPrincipale->addStretch();
+    layoutPrincipale->addLayout(layoutBottoni);
+
+    connect(bottoneChiudi, &QPushButton::clicked, this, [this]() {
+        emit chiudi();
+    });
 }
 
 void VistaDettagliAttivita::setAttivita(Attivita* a) {
     if (!a) return;
     attivita = a;
 
-    labelTitolo->setText(attivita->getTitolo());
+    labelTitolo->setText("Dettaglio dell'attività: " + attivita->getTitolo());
 
     for (QLabel *label : listaLabel) {
         layout->removeWidget(label);
@@ -33,3 +48,4 @@ void VistaDettagliAttivita::setAttivita(Attivita* a) {
         listaLabel.append(lbl);
     }
 }
+

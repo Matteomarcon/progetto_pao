@@ -50,3 +50,9 @@ void VistaListaAttivita::aggiornaLista(const QList<Attivita*>& listaAggiornata) 
         mappaItemAttivita[item] = attivita;
     }
 }
+
+void VistaListaAttivita::deseleziona() {
+    widgetLista->clearSelection();
+    widgetLista->clearFocus();
+    widgetLista->setCurrentItem(nullptr);
+}

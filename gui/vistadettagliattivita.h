@@ -14,6 +14,7 @@ class VistaDettagliAttivita : public QWidget {
 signals:
     void modifica(Attivita*);
     void elimina(Attivita*);
+    void chiudi();
 private:
     Attivita* attivita;
 
@@ -23,6 +24,7 @@ private:
 
     QPushButton* bottoneModifica;
     QPushButton* bottoneElimina;
+    QPushButton* bottoneChiudi;
 public:
     VistaDettagliAttivita(QWidget *parent = nullptr);
     void setAttivita(Attivita*);

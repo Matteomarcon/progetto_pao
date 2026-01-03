@@ -9,10 +9,12 @@
 #include <QMenuBar>
 #include <QGuiApplication>
 #include <QScreen>
+#include <QFileDialog>
 
 #include "attivita/attivita.h"
 #include "Json/GestoreJson.h"
 #include "xml/GestoreXml.h"
+#include "vistadefault.h"
 #include "vistalistaattivita.h"
 #include "vistacreazioneattivita.h"
 #include "vistadettagliattivita.h"
@@ -21,18 +23,18 @@
 class MainWindow : public QMainWindow {
     Q_OBJECT
 private slots:
+    void salvaJson();
     /*
     void chiudi();
     void eliminaElemento(Attivita*);
 
-    void salvaJson();
     void caricaJson();
     void salvaNuovoJson();
     void salvaXML();
     void caricaXML();
     void salvaNuovoXML();*/
 
-    void mostraVistaVuota();
+    void mostraVistaDefault();
     void mostraVistaDettagli(Attivita*);
     void mostraVistaCreazione();
     void mostraVistaModifica(Attivita*);
@@ -47,14 +49,14 @@ private:
     QMenu* menuSalva;
     QMenu* menuCrea;
     QStackedWidget* stack;
-    QString percorsoJson;
-    QString percorsoXML;
+    QString pathJson;
+    QString pathXML;
     //pannelloRicerca* pannelloRicerca;
+    VistaDefault* vistaDefault;
     VistaListaAttivita* vistaListaAttivita;
     VistaDettagliAttivita* vistaDettagliAttivita;
     VistaModificaAttivita* vistaModificaAttivita;
     VistaCreazioneAttivita* vistaCreazioneAttivita;
-    QWidget* vistaVuota;
     bool modificheNonSalvate;
 
 public:

@@ -52,19 +52,22 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 
     barraStrumenti->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     barraStrumenti->setIconSize(QSize(72, 72));
+    for (auto* action : barraStrumenti->actions())
+        if (auto* bottone = barraStrumenti->widgetForAction(action))
+            bottone->setCursor(Qt::PointingHandCursor);
 
     stack = new QStackedWidget(this);
-    vistaVuota = new QWidget(this);
+    vistaDefault = new VistaDefault(this);
     vistaListaAttivita = new VistaListaAttivita(listaAttivita, this);
     vistaDettagliAttivita = new VistaDettagliAttivita(this);
     vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
     vistaModificaAttivita = new VistaModificaAttivita(this);
 
-    stack->addWidget(vistaVuota);
+    stack->addWidget(vistaDefault);
     stack->addWidget(vistaDettagliAttivita);
     stack->addWidget(vistaCreazioneAttivita);
     stack->addWidget(vistaModificaAttivita);
-    stack->setCurrentIndex(2); //Da mettere 0 in futuro
+    stack->setCurrentIndex(0);
 
     QSplitter* divisore = new QSplitter(Qt::Horizontal, this);
 
@@ -89,10 +92,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 
     setCentralWidget(divisore);
     connect(vistaListaAttivita, &VistaListaAttivita::itemSelezionato, this, &MainWindow::mostraVistaDettagli);
-    connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::annulla, this, &MainWindow::mostraVistaVuota);
+    connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::annulla, this, &MainWindow::mostraVistaDefault);
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::salva, this, &MainWindow::salvaCreazione);
+    connect(vistaDettagliAttivita, &VistaDettagliAttivita::chiudi, this, &MainWindow::mostraVistaDefault);
 
     connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
+    connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
+
 }
 
 MainWindow::~MainWindow(){
@@ -100,7 +106,8 @@ MainWindow::~MainWindow(){
     listaAttivita.clear();
 }
 
-void MainWindow::mostraVistaVuota() {
+void MainWindow::mostraVistaDefault() {
+    vistaListaAttivita->deseleziona();
     stack->setCurrentIndex(0);
 }
 
@@ -126,4 +133,18 @@ void MainWindow::salvaCreazione(Attivita* a) {
 
 void MainWindow::salvaModifica(Attivita* a) {
 
+}
+
+void MainWindow::salvaJson() { //SalvaComeNuovoJson da rinominare
+    //if (!unsavedChanges) return;
+    pathJson = QFileDialog::getSaveFileName(this, "Crea nuovo file JSON", "./",
+                                                "JSON files *.json");
+    if (pathJson.isEmpty()) return;
+    if (!pathJson.endsWith(".json", Qt::CaseInsensitive)) pathJson += ".json";
+
+    GestoreJson gestoreJson(pathJson);
+    gestoreJson.setListaAttivita(listaAttivita);
+    gestoreJson.salvaJSON();
+
+    //unsavedChanges = false;
 }
