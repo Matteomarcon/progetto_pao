@@ -24,6 +24,9 @@ VistaDettagliAttivita::VistaDettagliAttivita(QWidget *parent) : QWidget{parent} 
     connect(bottoneChiudi, &QPushButton::clicked, this, [this]() {
         emit chiudi();
     });
+    connect(bottoneElimina, &QPushButton::clicked, this, [this]() {
+        emit elimina(attivita);
+    });
 }
 
 void VistaDettagliAttivita::setAttivita(Attivita* a) {

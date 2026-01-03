@@ -95,13 +95,18 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::annulla, this, &MainWindow::mostraVistaDefault);
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::salva, this, &MainWindow::salvaCreazione);
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::chiudi, this, &MainWindow::mostraVistaDefault);
-
-
+    connect(vistaDettagliAttivita, &VistaDettagliAttivita::elimina, this, &MainWindow::eliminaAttivita);
 
     connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
+    connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
     connect(salvaComeJson, &QAction::triggered, this, &MainWindow::salvaComeJson);
 
+    /*connect(apriXml, &QAction::triggered, this, &MainWindow::apriXml);
+    connect(salvaXml, &QAction::triggered, this, &MainWindow::salvaXml;
+    connect(salvaComeXml, &QAction::triggered, this, &MainWindow::salvaComeXml);*/
+
     connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
+
 }
 
 MainWindow::~MainWindow(){
@@ -134,12 +139,21 @@ void MainWindow::salvaCreazione(Attivita* a) {
     stack->setCurrentIndex(0);
 }
 
+void MainWindow::eliminaAttivita(Attivita* a) {
+    if (listaAttivita.removeOne(a)) {
+        delete a;
+        vistaListaAttivita->aggiornaLista(listaAttivita);
+        stack->setCurrentIndex(3);
+        //unsavedChanges = true;
+    }
+}
+
 void MainWindow::salvaModifica(Attivita* a) {
 
 }
 
 void MainWindow::apriJson() {
-    QString pathJson = QFileDialog::getOpenFileName(this, "Seleziona un file JSON", "./", "*.json");
+    pathJson = QFileDialog::getOpenFileName(this, "Seleziona un file JSON", "./", "*.json");
     if (pathJson.isEmpty()) return;
 
     for (auto a : listaAttivita) delete a;
@@ -151,6 +165,15 @@ void MainWindow::apriJson() {
 
     vistaListaAttivita->aggiornaLista(listaAttivita);
     mostraVistaDefault();
+}
+
+void MainWindow::salvaJson() {
+    //if (!unsavedChanges) return;
+    GestoreJson gestoreJson(pathJson);
+    gestoreJson.setListaAttivita(listaAttivita);
+    gestoreJson.salvaJSON();
+
+    //unsavedChanges = false;
 }
 
 void MainWindow::salvaComeJson() {

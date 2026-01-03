@@ -24,14 +24,14 @@ class MainWindow : public QMainWindow {
     Q_OBJECT
 private slots:
     void apriJson();
+    void salvaJson();
     void salvaComeJson();
     /*
     void chiudi();
     void eliminaElemento(Attivita*);
 
-    void salvaJson();
-    void salvaXML();
     void apriXML();
+    void salvaXML();  
     void salvaComeXML();*/
 
     void mostraVistaDefault();
@@ -41,6 +41,7 @@ private slots:
 
     void salvaCreazione(Attivita*);
     void salvaModifica(Attivita*);
+    void eliminaAttivita(Attivita*);
 
 private:
     QList<Attivita*> listaAttivita;
