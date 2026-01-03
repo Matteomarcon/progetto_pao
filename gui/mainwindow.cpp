@@ -13,15 +13,15 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     apriJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
     QAction* salvaJson = new QAction(QIcon(":/icone/json_salva.png"), "Salva JSON", this);
     salvaJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
-    QAction* salvaNuovoJson = new QAction(QIcon(":/icone/json_salva_come.png"), "Salva come JSON", this);
-    salvaNuovoJson->setShortcut(QKeySequence(Qt::Key_F12));
+    QAction* salvaComeJson = new QAction(QIcon(":/icone/json_salva_come.png"), "Salva come JSON", this);
+    salvaComeJson->setShortcut(QKeySequence(Qt::Key_F12));
 
     QAction* apriXml = new QAction(QIcon(":/icone/xml_apri.png"), "Apri XML", this);
     apriXml->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O));
     QAction* salvaXml = new QAction(QIcon(":/icone/xml_salva.png"), "Salva XML", this);
     salvaXml->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_S));
-    QAction* salvaNuovoXml = new QAction(QIcon(":/icone/xml_salva_come.png"), "Salva come XML", this);
-    salvaNuovoXml->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_F12));
+    QAction* salvaComeXml = new QAction(QIcon(":/icone/xml_salva_come.png"), "Salva come XML", this);
+    salvaComeXml->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_F12));
 
     QAction* creaAttivita = new QAction(QIcon(":/icone/attivita.png"), "Crea attività", this);
     creaAttivita->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
@@ -32,9 +32,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 
     menuSalva = menuBar()->addMenu("Salva");
     menuSalva->addAction(salvaJson);
-    menuSalva->addAction(salvaNuovoJson);
+    menuSalva->addAction(salvaComeJson);
     menuSalva->addAction(salvaXml);
-    menuSalva->addAction(salvaNuovoXml);
+    menuSalva->addAction(salvaComeXml);
 
     menuCrea = menuBar()->addMenu("Crea");
     menuCrea->addAction(creaAttivita);
@@ -42,11 +42,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     barraStrumenti = addToolBar("barraStrumenti");
     barraStrumenti->addAction(apriJson);
     barraStrumenti->addAction(salvaJson);
-    barraStrumenti->addAction(salvaNuovoJson);
+    barraStrumenti->addAction(salvaComeJson);
     barraStrumenti->addSeparator();
     barraStrumenti->addAction(apriXml);
     barraStrumenti->addAction(salvaXml);
-    barraStrumenti->addAction(salvaNuovoXml);
+    barraStrumenti->addAction(salvaComeXml);
     barraStrumenti->addSeparator();
     barraStrumenti->addAction(creaAttivita);
 
@@ -97,7 +97,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::chiudi, this, &MainWindow::mostraVistaDefault);
 
     connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
-    connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
+    connect(salvaComeJson, &QAction::triggered, this, &MainWindow::salvaComeJson);
 
 }
 
@@ -135,10 +135,9 @@ void MainWindow::salvaModifica(Attivita* a) {
 
 }
 
-void MainWindow::salvaJson() { //SalvaComeNuovoJson da rinominare
+void MainWindow::salvaComeJson() {
     //if (!unsavedChanges) return;
-    pathJson = QFileDialog::getSaveFileName(this, "Crea nuovo file JSON", "./",
-                                                "JSON files *.json");
+    pathJson = QFileDialog::getSaveFileName(this, "Crea nuovo file JSON", "./", ".json");
     if (pathJson.isEmpty()) return;
     if (!pathJson.endsWith(".json", Qt::CaseInsensitive)) pathJson += ".json";
 

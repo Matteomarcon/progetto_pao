@@ -19,6 +19,16 @@ void Lettura::accept(VisitorModifica& visitor){
 }
 
 void Lettura::toJson(QJsonObject& obj) const {
+    obj["attivita"] = "Lettura";
+    obj["titolo"] = this->getTitolo();
+    obj["descrizioneBreve"] =  this->getDescrizioneBreve();
+    obj["dataCreazione"] =  this->getDataCreazione().toString();
+    obj["ultimaModifica"] = this->getUltimaModifica().toString();
+    obj["stato"] = this->getStato();
+    obj["priorita"] = QString::number(this->getPriorita());
+    obj["autore"] = this->getAutore();
+    obj["pagine"] = this->getPagine();
+    obj["lingua"] = this->getLingua();
 }
 void Lettura::toXml(QDomElement& elm) const {
 }

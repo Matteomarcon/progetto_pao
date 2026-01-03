@@ -17,6 +17,15 @@ void Evento::accept(VisitorModifica& visitor){
 }
 
 void Evento::toJson(QJsonObject& obj) const {
+    obj["attivita"] = "Evento";
+    obj["titolo"] = this->getTitolo();
+    obj["descrizioneBreve"] =  this->getDescrizioneBreve();
+    obj["dataCreazione"] =  this->getDataCreazione().toString();
+    obj["ultimaModifica"] = this->getUltimaModifica().toString();
+    obj["dataInizio"] = this->getDataInizio().toString();
+    obj["dataFine"] = this->getDataFine().toString();
+    obj["organizzatore"] = this->getOrganizzatore();
+    obj["luogo"] = this->getLuogo();
 }
 void Evento::toXml(QDomElement& elm) const {
 }

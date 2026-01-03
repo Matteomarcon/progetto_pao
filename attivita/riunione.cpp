@@ -17,6 +17,15 @@ void Riunione::accept(VisitorModifica& visitor){
 }
 
 void Riunione::toJson(QJsonObject& obj) const {
+    obj["attivita"] = "Riunione";
+    obj["titolo"] = this->getTitolo();
+    obj["descrizioneBreve"] =  this->getDescrizioneBreve();
+    obj["dataCreazione"] =  this->getDataCreazione().toString();
+    obj["ultimaModifica"] = this->getUltimaModifica().toString();
+    obj["dataInizio"] = this->getDataInizio().toString();
+    obj["dataFine"] = this->getDataFine().toString();
+    obj["ordineDelGiorno"] = this->getOrdineDelGiorno();
+    obj["url"] = this->getUrl();
 }
 void Riunione::toXml(QDomElement& elm) const {
 }

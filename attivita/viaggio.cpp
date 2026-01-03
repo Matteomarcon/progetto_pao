@@ -17,6 +17,15 @@ void Viaggio::accept(VisitorModifica& visitor){
 }
 
 void Viaggio::toJson(QJsonObject& obj) const {
+    obj["attivita"] = "Viaggio";
+    obj["titolo"] = this->getTitolo();
+    obj["descrizioneBreve"] =  this->getDescrizioneBreve();
+    obj["dataCreazione"] =  this->getDataCreazione().toString();
+    obj["ultimaModifica"] = this->getUltimaModifica().toString();
+    obj["dataInizio"] = this->getDataInizio().toString();
+    obj["dataFine"] = this->getDataFine().toString();
+    obj["mezzoDiTrasporto"] = this->getMezzoDiTrasporto();
+    obj["luogoPartenza"] = this->getLuogoPartenza();
 }
 void Viaggio::toXml(QDomElement& elm) const {
 }

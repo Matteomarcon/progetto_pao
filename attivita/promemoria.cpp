@@ -15,6 +15,14 @@ void Promemoria::accept(VisitorModifica& visitor){
 }
 
 void Promemoria::toJson(QJsonObject& obj) const {
+    obj["attivita"] = "Promemoria";
+    obj["titolo"] = this->getTitolo();
+    obj["descrizioneBreve"] =  this->getDescrizioneBreve();
+    obj["dataCreazione"] =  this->getDataCreazione().toString();
+    obj["ultimaModifica"] = this->getUltimaModifica().toString();
+    obj["stato"] = this->getStato();
+    obj["priorita"] = QString::number(this->getPriorita());
+    obj["nota"] = this->getNota();
 }
 void Promemoria::toXml(QDomElement& elm) const {
 }
