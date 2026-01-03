@@ -6,7 +6,11 @@
 #include <QJsonDocument>
 #include <QFile>
 
-#include "attivita/attivita.h"
+#include "attivita/evento.h"
+#include "attivita/lettura.h"
+#include "attivita/promemoria.h"
+#include "attivita/riunione.h"
+#include "attivita/viaggio.h"
 
 class GestoreJson : public QObject {
     Q_OBJECT
@@ -21,6 +25,12 @@ public:
 
     void apriJSON();
     bool salvaJSON();
+
+    Evento* creaEvento(const QJsonObject&);
+    Lettura* creaLettura(const QJsonObject&);
+    Promemoria* creaPromemoria(const QJsonObject&);
+    Riunione* creaRiunione(const QJsonObject&);
+    Viaggio* creaViaggio(const QJsonObject&);
 };
 
 #endif // GESTOREJSON_H

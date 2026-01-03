@@ -23,15 +23,15 @@
 class MainWindow : public QMainWindow {
     Q_OBJECT
 private slots:
+    void apriJson();
     void salvaComeJson();
     /*
     void chiudi();
     void eliminaElemento(Attivita*);
 
-    void caricaJson();
     void salvaJson();
     void salvaXML();
-    void caricaXML();
+    void apriXML();
     void salvaComeXML();*/
 
     void mostraVistaDefault();

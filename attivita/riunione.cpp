@@ -20,10 +20,10 @@ void Riunione::toJson(QJsonObject& obj) const {
     obj["attivita"] = "Riunione";
     obj["titolo"] = this->getTitolo();
     obj["descrizioneBreve"] =  this->getDescrizioneBreve();
-    obj["dataCreazione"] =  this->getDataCreazione().toString();
-    obj["ultimaModifica"] = this->getUltimaModifica().toString();
-    obj["dataInizio"] = this->getDataInizio().toString();
-    obj["dataFine"] = this->getDataFine().toString();
+    obj["dataCreazione"] =  this->getDataCreazione().toString(Qt::ISODate);
+    obj["ultimaModifica"] = this->getUltimaModifica().toString(Qt::ISODate);
+    obj["dataInizio"] = this->getDataInizio().toString(Qt::ISODate);
+    obj["dataFine"] = this->getDataFine().toString(Qt::ISODate);
     obj["ordineDelGiorno"] = this->getOrdineDelGiorno();
     obj["url"] = this->getUrl();
 }

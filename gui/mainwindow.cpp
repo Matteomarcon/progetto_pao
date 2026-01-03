@@ -96,9 +96,12 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::salva, this, &MainWindow::salvaCreazione);
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::chiudi, this, &MainWindow::mostraVistaDefault);
 
-    connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
+
+
+    connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
     connect(salvaComeJson, &QAction::triggered, this, &MainWindow::salvaComeJson);
 
+    connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
 }
 
 MainWindow::~MainWindow(){
@@ -135,9 +138,24 @@ void MainWindow::salvaModifica(Attivita* a) {
 
 }
 
+void MainWindow::apriJson() {
+    QString pathJson = QFileDialog::getOpenFileName(this, "Seleziona un file JSON", "./", "*.json");
+    if (pathJson.isEmpty()) return;
+
+    for (auto a : listaAttivita) delete a;
+    listaAttivita.clear();
+
+    GestoreJson gestoreJson(pathJson);
+    gestoreJson.apriJSON();
+    listaAttivita = gestoreJson.getListaAttivita();
+
+    vistaListaAttivita->aggiornaLista(listaAttivita);
+    mostraVistaDefault();
+}
+
 void MainWindow::salvaComeJson() {
     //if (!unsavedChanges) return;
-    pathJson = QFileDialog::getSaveFileName(this, "Crea nuovo file JSON", "./", ".json");
+    pathJson = QFileDialog::getSaveFileName(this, "Crea nuovo file JSON", "./", "*.json");
     if (pathJson.isEmpty()) return;
     if (!pathJson.endsWith(".json", Qt::CaseInsensitive)) pathJson += ".json";
 

@@ -14,7 +14,7 @@ void VisitorLabel::labelAttivita(const Attivita& a) {
 void VisitorLabel::labelAttivitaLibera(const AttivitaLibera& al) {
     labelAttivita(al);
     listaLabel.append("Priorità:\n" + QString::number(al.getPriorita()));
-    listaLabel.append(al.getStato());
+    listaLabel.append("Stato:\n" + al.getStato());
 }
 
 void VisitorLabel::labelAttivitaProgrammata(const AttivitaProgrammata& ap) {

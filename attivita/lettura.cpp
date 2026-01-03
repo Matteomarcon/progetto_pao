@@ -22,8 +22,8 @@ void Lettura::toJson(QJsonObject& obj) const {
     obj["attivita"] = "Lettura";
     obj["titolo"] = this->getTitolo();
     obj["descrizioneBreve"] =  this->getDescrizioneBreve();
-    obj["dataCreazione"] =  this->getDataCreazione().toString();
-    obj["ultimaModifica"] = this->getUltimaModifica().toString();
+    obj["dataCreazione"] =  this->getDataCreazione().toString(Qt::ISODate);
+    obj["ultimaModifica"] = this->getUltimaModifica().toString(Qt::ISODate);
     obj["stato"] = this->getStato();
     obj["priorita"] = QString::number(this->getPriorita());
     obj["autore"] = this->getAutore();
