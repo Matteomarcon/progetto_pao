@@ -2,7 +2,15 @@
 
 GestoreJson::GestoreJson(const QString& path): path(path) {}
 
-void GestoreJson::apriJSON() {
+const QList<Attivita*>& GestoreJson::getListaAttivita() const {
+    return listaAttivita;
+}
+
+void GestoreJson::setListaAttivita(QList<Attivita*> nuovaLista) {
+    listaAttivita = nuovaLista;
+}
+
+void GestoreJson::apriJson() {
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Impossibile aprire il file:" << path;
@@ -44,7 +52,7 @@ void GestoreJson::apriJSON() {
     }
 }
 
-bool GestoreJson::salvaJSON() {
+bool GestoreJson::salvaJson() {
     QJsonArray array;
     for (auto attivita : listaAttivita) {
         QJsonObject obj;
@@ -59,14 +67,6 @@ bool GestoreJson::salvaJSON() {
     file.write(doc.toJson(QJsonDocument::Indented));
     file.close();
     return true;
-}
-
-const QList<Attivita*>& GestoreJson::getListaAttivita() const {
-    return listaAttivita;
-}
-
-void GestoreJson::setListaAttivita(QList<Attivita*> nuovaLista) {
-    listaAttivita = nuovaLista;
 }
 
 Evento* GestoreJson::creaEvento(const QJsonObject& obj) {

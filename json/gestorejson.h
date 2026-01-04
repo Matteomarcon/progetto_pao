@@ -17,20 +17,20 @@ class GestoreJson : public QObject {
 private:
     QList<Attivita*> listaAttivita;
     QString path;
-public:
-    GestoreJson(const QString&);
-
-    const QList<Attivita*>& getListaAttivita() const;
-    void setListaAttivita(QList<Attivita*>);
-
-    void apriJSON();
-    bool salvaJSON();
 
     Evento* creaEvento(const QJsonObject&);
     Lettura* creaLettura(const QJsonObject&);
     Promemoria* creaPromemoria(const QJsonObject&);
     Riunione* creaRiunione(const QJsonObject&);
     Viaggio* creaViaggio(const QJsonObject&);
+public:
+    GestoreJson(const QString&);
+
+    const QList<Attivita*>& getListaAttivita() const;
+    void setListaAttivita(QList<Attivita*>);
+
+    void apriJson();
+    bool salvaJson();
 };
 
 #endif // GESTOREJSON_H

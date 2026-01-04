@@ -9,6 +9,7 @@
 #include <QLineEdit>
 #include <QSpinBox>
 #include <QDateTimeEdit>
+#include <QScrollArea>
 
 #include "attivita/attivita.h"
 #include "attivita/evento.h"

@@ -101,9 +101,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
     connect(salvaComeJson, &QAction::triggered, this, &MainWindow::salvaComeJson);
 
-    /*connect(apriXml, &QAction::triggered, this, &MainWindow::apriXml);
-    connect(salvaXml, &QAction::triggered, this, &MainWindow::salvaXml;
-    connect(salvaComeXml, &QAction::triggered, this, &MainWindow::salvaComeXml);*/
+    connect(apriXml, &QAction::triggered, this, &MainWindow::apriXml);
+    connect(salvaXml, &QAction::triggered, this, &MainWindow::salvaXml);
+    connect(salvaComeXml, &QAction::triggered, this, &MainWindow::salvaComeXml);
 
     connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
 
@@ -160,7 +160,7 @@ void MainWindow::apriJson() {
     listaAttivita.clear();
 
     GestoreJson gestoreJson(pathJson);
-    gestoreJson.apriJSON();
+    gestoreJson.apriJson();
     listaAttivita = gestoreJson.getListaAttivita();
 
     vistaListaAttivita->aggiornaLista(listaAttivita);
@@ -171,7 +171,7 @@ void MainWindow::salvaJson() {
     //if (!unsavedChanges) return;
     GestoreJson gestoreJson(pathJson);
     gestoreJson.setListaAttivita(listaAttivita);
-    gestoreJson.salvaJSON();
+    gestoreJson.salvaJson();
 
     //unsavedChanges = false;
 }
@@ -184,7 +184,45 @@ void MainWindow::salvaComeJson() {
 
     GestoreJson gestoreJson(pathJson);
     gestoreJson.setListaAttivita(listaAttivita);
-    gestoreJson.salvaJSON();
+    gestoreJson.salvaJson();
+
+    //unsavedChanges = false;
+}
+
+
+void MainWindow::apriXml() {
+    pathXml = QFileDialog::getOpenFileName(this, "Seleziona un file XML", "./", "*.xml");
+    if (pathXml.isEmpty()) return;
+
+    for (auto a : listaAttivita) delete a;
+    listaAttivita.clear();
+
+    GestoreXml gestoreXml(pathXml);
+    gestoreXml.apriXml();
+    listaAttivita = gestoreXml.getListaAttivita();
+
+    vistaListaAttivita->aggiornaLista(listaAttivita);
+    mostraVistaDefault();
+}
+
+void MainWindow::salvaXml() {
+    //if (!unsavedChanges) return;
+    GestoreXml gestoreXml(pathXml);
+    gestoreXml.setListaAttivita(listaAttivita);
+    gestoreXml.salvaXml();
+
+    //unsavedChanges = false;
+}
+
+void MainWindow::salvaComeXml() {
+    //if (!unsavedChanges) return;
+    pathXml = QFileDialog::getSaveFileName(this, "Crea nuovo file XML", "./", "*.xml");
+    if (pathXml.isEmpty()) return;
+    if (!pathXml.endsWith(".xml", Qt::CaseInsensitive)) pathXml += ".xml";
+
+    GestoreXml gestoreXml(pathXml);
+    gestoreXml.setListaAttivita(listaAttivita);
+    gestoreXml.salvaXml();
 
     //unsavedChanges = false;
 }

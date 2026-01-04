@@ -20,11 +20,17 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     layoutBottoni->addWidget(bottoneAnnulla);
 
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
-    layoutForm = new QVBoxLayout(this);
+    QWidget* widgetForm = new QWidget(this);
+    layoutForm = new QVBoxLayout(widgetForm);
+
+    QScrollArea* scrollArea = new QScrollArea(this);
+    scrollArea->setWidget(widgetForm);
+    scrollArea->setWidgetResizable(true);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
     layoutPrincipale->addWidget(labelTitolo);
     layoutPrincipale->addWidget(tipoAttivita);
-    layoutPrincipale->addLayout(layoutForm);
-    layoutPrincipale->addStretch();
+    layoutPrincipale->addWidget(scrollArea);
     layoutPrincipale->addLayout(layoutBottoni);
 
     bottoneSalva->hide();
@@ -41,6 +47,7 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
         else if (attivitaSelezionata == "Promemoria") creaPromemoria();
         else if (attivitaSelezionata == "Riunione") creaRiunione();
         else if (attivitaSelezionata == "Viaggio") creaViaggio();
+        layoutForm->addStretch();
     });
 
     connect(bottoneSalva, &QPushButton::clicked, this, [this]() {

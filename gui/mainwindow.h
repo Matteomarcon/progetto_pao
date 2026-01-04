@@ -26,13 +26,12 @@ private slots:
     void apriJson();
     void salvaJson();
     void salvaComeJson();
-    /*
-    void chiudi();
-    void eliminaElemento(Attivita*);
 
-    void apriXML();
-    void salvaXML();  
-    void salvaComeXML();*/
+    void apriXml();
+    void salvaXml();
+    void salvaComeXml();
+
+    /*void chiudi();*/
 
     void mostraVistaDefault();
     void mostraVistaDettagli(Attivita*);
@@ -51,7 +50,7 @@ private:
     QMenu* menuCrea;
     QStackedWidget* stack;
     QString pathJson;
-    QString pathXML;
+    QString pathXml;
     //pannelloRicerca* pannelloRicerca;
     VistaDefault* vistaDefault;
     VistaListaAttivita* vistaListaAttivita;
