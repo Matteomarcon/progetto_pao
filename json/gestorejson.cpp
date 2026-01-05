@@ -46,7 +46,7 @@ void GestoreJson::apriJson() {
             if (attivita)
                 listaAttivita.append(attivita);
             else
-                qWarning() << "Non esiste l'attivita: " << attivita;
+                qWarning() << "Non esiste l'attività: " << attivita;
         } else
             qWarning() << "Value non è un oggetto";
     }

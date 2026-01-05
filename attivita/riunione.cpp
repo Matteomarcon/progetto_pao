@@ -27,5 +27,15 @@ void Riunione::toJson(QJsonObject& obj) const {
     obj["ordineDelGiorno"] = this->getOrdineDelGiorno();
     obj["url"] = this->getUrl();
 }
+
 void Riunione::toXml(QDomElement& elm) const {
+    elm.setAttribute("titolo", this->getTitolo());
+    elm.setAttribute("descrizioneBreve", this->getDescrizioneBreve());
+    elm.setAttribute("dataCreazione", this->getDataCreazione().toString(Qt::ISODate));
+    elm.setAttribute("ultimaModifica", this->getUltimaModifica().toString(Qt::ISODate));
+    elm.setAttribute("dataInizio", this->getDataInizio().toString(Qt::ISODate));
+    elm.setAttribute("dataFine", this->getDataFine().toString(Qt::ISODate));
+    elm.setAttribute("ordineDelGiorno", this->getOrdineDelGiorno());
+    elm.setAttribute("url", this->getUrl());
 }
+

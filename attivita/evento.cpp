@@ -27,5 +27,15 @@ void Evento::toJson(QJsonObject& obj) const {
     obj["organizzatore"] = this->getOrganizzatore();
     obj["luogo"] = this->getLuogo();
 }
+
 void Evento::toXml(QDomElement& elm) const {
+    elm.setAttribute("titolo", this->getTitolo());
+    elm.setAttribute("descrizioneBreve", this->getDescrizioneBreve());
+    elm.setAttribute("dataCreazione", this->getDataCreazione().toString(Qt::ISODate));
+    elm.setAttribute("ultimaModifica", this->getUltimaModifica().toString(Qt::ISODate));
+    elm.setAttribute("dataInizio", this->getDataInizio().toString(Qt::ISODate));
+    elm.setAttribute("dataFine", this->getDataFine().toString(Qt::ISODate));
+    elm.setAttribute("organizzatore", this->getOrganizzatore());
+    elm.setAttribute("luogo", this->getLuogo());
 }
+

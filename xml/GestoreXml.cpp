@@ -10,64 +10,87 @@ void GestoreXml::setListaAttivita(QList<Attivita*> nuovaLista) {
     listaAttivita = nuovaLista;
 }
 
-
 void GestoreXml::apriXml() {
-/*    QFile file(path);
+    QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Impossibile aprire il file:" << path;
         return;
     }
 
-    QByteArray jsonDataArray = file.readAll();
+    QDomDocument doc;
+    if (!doc.setContent(&file)) {
+        qWarning() << "Errore nel parsing XML";
+        file.close();
+        return;
+    }
     file.close();
-    QJsonDocument doc = QJsonDocument::fromJson(jsonDataArray);
 
-    if (!doc.isArray()) {
-        qWarning() << "Il file JSON non contiene un array";
+    QDomElement root = doc.documentElement();
+    if (root.tagName() != "attivita") {
+        qWarning() << "Root XML non valido";
         return;
     }
 
-    QJsonArray jsonArray = doc.array();
+    QDomNode n = root.firstChild();
+    while (!n.isNull()) {
+        QDomElement elm = n.toElement();
+        if (!elm.isNull()) {
+            QString tipoAttivita = elm.tagName();
+            Attivita *attivita = nullptr;
 
-    for (const QJsonValue& value : jsonArray) {
-        if (value.isObject()) {
-            QJsonObject obj = value.toObject();
-            QString tipoAttivita = obj["attivita"].toString();
-            Attivita* attivita = nullptr;
             if (tipoAttivita == "Evento")
-                attivita = creaEvento(obj);
+                attivita = creaEvento(elm);
             if (tipoAttivita == "Lettura")
-                attivita = creaLettura(obj);
+                attivita = creaLettura(elm);
             if (tipoAttivita == "Promemoria")
-                attivita = creaPromemoria(obj);
+                attivita = creaPromemoria(elm);
             if (tipoAttivita == "Riunione")
-                attivita = creaRiunione(obj);
+                attivita = creaRiunione(elm);
             if (tipoAttivita == "Viaggio")
-                attivita = creaViaggio(obj);
+                attivita = creaViaggio(elm);
             if (attivita)
                 listaAttivita.append(attivita);
             else
-                qWarning() << "Non esiste l'attivita: " << attivita;
-        } else
-            qWarning() << "Value non è un oggetto";
-    }*/
+                qWarning() << "Non esiste l'attività: " << tipoAttivita;
+        }
+        n = n.nextSibling();
+    }
 }
 
 bool GestoreXml::salvaXml() {
-/*    QJsonArray array;
+    QDomDocument doc;
+    QDomElement root = doc.createElement("attivita");
+    doc.appendChild(root);
+
     for (auto attivita : listaAttivita) {
-        QJsonObject obj;
-        attivita->toJson(obj);
-        array.append(obj);
+        QString tipoAttivita;
+        if (dynamic_cast<Evento*>(attivita))
+            tipoAttivita = "Evento";
+        else if (dynamic_cast<Lettura*>(attivita))
+            tipoAttivita = "Lettura";
+        else if (dynamic_cast<Promemoria*>(attivita))
+            tipoAttivita = "Promemoria";
+        else if (dynamic_cast<Riunione*>(attivita))
+            tipoAttivita = "Riunione";
+        else if (dynamic_cast<Viaggio*>(attivita))
+            tipoAttivita = "Viaggio";
+        else {
+            qWarning() << "Non esiste l'attività: " << tipoAttivita;
+            continue;
+        }
+        QDomElement elm = doc.createElement(tipoAttivita);
+        attivita->toXml(elm);
+        root.appendChild(elm);
     }
 
-    QJsonDocument doc(array);
     QFile file(path);
-    if (!file.open(QIODevice::WriteOnly))
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
-    file.write(doc.toJson(QJsonDocument::Indented));
+
+    QTextStream stream(&file);
+    doc.save(stream, 4);
     file.close();
-    return true;*/
+    return true;
 }
 
 Evento* GestoreXml::creaEvento(const QDomElement& elm) {

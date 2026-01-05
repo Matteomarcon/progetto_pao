@@ -25,10 +25,20 @@ void Lettura::toJson(QJsonObject& obj) const {
     obj["dataCreazione"] =  this->getDataCreazione().toString(Qt::ISODate);
     obj["ultimaModifica"] = this->getUltimaModifica().toString(Qt::ISODate);
     obj["stato"] = this->getStato();
-    obj["priorita"] = QString::number(this->getPriorita());
+    obj["priorita"] = this->getPriorita();
     obj["autore"] = this->getAutore();
     obj["pagine"] = this->getPagine();
     obj["lingua"] = this->getLingua();
 }
+
 void Lettura::toXml(QDomElement& elm) const {
+    elm.setAttribute("titolo", this->getTitolo());
+    elm.setAttribute("descrizioneBreve", this->getDescrizioneBreve());
+    elm.setAttribute("dataCreazione", this->getDataCreazione().toString(Qt::ISODate));
+    elm.setAttribute("ultimaModifica", this->getUltimaModifica().toString(Qt::ISODate));
+    elm.setAttribute("stato", this->getStato());
+    elm.setAttribute("priorita", this->getPriorita());
+    elm.setAttribute("autore", this->getAutore());
+    elm.setAttribute("pagine", this->getPagine());
+    elm.setAttribute("lingua", this->getLingua());
 }
