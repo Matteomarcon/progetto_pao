@@ -169,6 +169,11 @@ void MainWindow::apriJson() {
 
 void MainWindow::salvaJson() {
     //if (!unsavedChanges) return;
+
+    if(pathJson == "") {
+        salvaComeJson();
+    }
+
     GestoreJson gestoreJson(pathJson);
     gestoreJson.setListaAttivita(listaAttivita);
     gestoreJson.salvaJson();
@@ -207,6 +212,11 @@ void MainWindow::apriXml() {
 
 void MainWindow::salvaXml() {
     //if (!unsavedChanges) return;
+
+    if(pathXml == "") {
+        salvaComeXml();
+    }
+
     GestoreXml gestoreXml(pathXml);
     gestoreXml.setListaAttivita(listaAttivita);
     gestoreXml.salvaXml();
