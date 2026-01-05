@@ -51,6 +51,15 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     });
 
     connect(bottoneSalva, &QPushButton::clicked, this, [this]() {
+        QLineEdit* editTitolo = qobject_cast<QLineEdit*>(campiForm["titolo"]);
+
+        if (editTitolo->text().trimmed().isEmpty()) {
+            QMessageBox::warning(this, "Campo obbligatorio", "Il campo Titolo è obbligatorio.");
+            editTitolo->setFocus();
+            editTitolo->setStyleSheet("border: 1px solid red;");
+            return;
+        }
+
         Attivita *attivita = creaOggettoAttivita();
         pulisciLayout(layoutForm);
         tipoAttivita->setCurrentIndex(-1);
@@ -60,6 +69,21 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     });
 
     connect(bottoneAnnulla, &QPushButton::clicked, this, [this]() {
+        QMessageBox msgBox(this);
+        msgBox.setWindowTitle("Conferma annullamento");
+        msgBox.setText("Sei sicuro di voler annullare?\nLe modifiche andranno perse.");
+
+        QPushButton* btnSi =
+            msgBox.addButton("Conferma", QMessageBox::YesRole);
+        QPushButton* btnNo =
+            msgBox.addButton("Torna indietro", QMessageBox::NoRole);
+
+        msgBox.setDefaultButton(btnNo);
+        msgBox.exec();
+
+        if (msgBox.clickedButton() != btnSi)
+            return;
+
         pulisciLayout(layoutForm);
         tipoAttivita->setCurrentIndex(-1);
         bottoneSalva->hide();
@@ -73,7 +97,9 @@ void VistaCreazioneAttivita::creaAttivita() {
     pulisciLayout(layoutForm);
 
     campiForm["titolo"] = new QLineEdit();
-    layoutForm->addWidget(new QLabel("Titolo"));
+    QLabel* labelTitolo = new QLabel("Titolo <span style='color:red;'>*</span>");
+    labelTitolo->setTextFormat(Qt::RichText);
+    layoutForm->addWidget(labelTitolo);
     layoutForm->addWidget(campiForm["titolo"]);
 
     campiForm["descrizionebreve"] = new QLineEdit();
