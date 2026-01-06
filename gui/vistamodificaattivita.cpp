@@ -52,6 +52,13 @@ void VistaModificaAttivita::setAttivita(Attivita* a) {
     attivita = a;
 
     labelTitolo->setText("Stai modificando l'attività: " + attivita->getTitolo());
+
+    pulisciLayout(layoutForm);
+
+    VisitorVistaModificaAttivita visitor(campiForm, layoutForm);
+    attivita->accept(visitor);
+    campiForm = visitor.getCampiForm();
+    layoutForm->addStretch();
 }
 
 void VistaModificaAttivita::pulisciLayout(QLayout* layout) {

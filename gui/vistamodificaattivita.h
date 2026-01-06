@@ -10,6 +10,8 @@
 
 #include "attivita/attivita.h"
 
+#include "visitorvistamodificaattivita.h"
+
 class VistaModificaAttivita : public QWidget {
     Q_OBJECT
 signals:
@@ -17,12 +19,13 @@ signals:
     void salva(Attivita*);
 private:
     Attivita* attivita;
-
     QLabel* labelTitolo;
-    QVBoxLayout* layoutForm;
 
+    QVBoxLayout* layoutForm;
+    QMap<QString, QWidget*> campiForm;
     QPushButton* bottoneSalva;
     QPushButton* bottoneAnnulla;
+
     void salvaModifica();
 public:
     VistaModificaAttivita(QWidget *parent = nullptr);
