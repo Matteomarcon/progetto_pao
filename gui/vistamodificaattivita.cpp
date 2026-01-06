@@ -44,6 +44,15 @@ VistaModificaAttivita::VistaModificaAttivita(QWidget *parent): QWidget{parent} {
     });
 
     connect(bottoneSalva, &QPushButton::clicked, this, [this]() {
+        QLineEdit* editTitolo = qobject_cast<QLineEdit*>(campiForm["titolo"]);
+
+        if (editTitolo->text().trimmed().isEmpty()) {
+            QMessageBox::warning(this, "Campo obbligatorio", "Il campo Titolo è obbligatorio.");
+            editTitolo->setFocus();
+            editTitolo->setStyleSheet("border: 1px solid red;");
+            return;
+        }
+
         salvaModifica();
         emit salva(attivita);
     });
