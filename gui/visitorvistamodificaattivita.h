@@ -6,6 +6,9 @@
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <QLabel>
+#include <QDateTimeEdit>
+#include <QComboBox>
+#include <QSpinBox>
 
 #include <attivita/VisitorInterface.h>
 #include "attivita/attivita.h"

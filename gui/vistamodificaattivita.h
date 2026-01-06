@@ -11,6 +11,7 @@
 #include "attivita/attivita.h"
 
 #include "visitorvistamodificaattivita.h"
+#include "visitormodificaattivita.h"
 
 class VistaModificaAttivita : public QWidget {
     Q_OBJECT

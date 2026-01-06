@@ -28,21 +28,24 @@ VistaModificaAttivita::VistaModificaAttivita(QWidget *parent): QWidget{parent} {
     connect(bottoneAnnulla, &QPushButton::clicked, this, [this]() {
         QMessageBox msgBox(this);
         msgBox.setWindowTitle("Conferma annullamento");
+        msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText("Sei sicuro di voler annullare?\nLe modifiche andranno perse.");
 
-        QPushButton* btnSi =
-            msgBox.addButton("Conferma", QMessageBox::YesRole);
-        QPushButton* btnNo =
-            msgBox.addButton("Torna indietro", QMessageBox::NoRole);
+        QPushButton* btnSi = msgBox.addButton("Conferma", QMessageBox::YesRole);
+        QPushButton* btnNo = msgBox.addButton("Torna indietro", QMessageBox::NoRole);
 
         msgBox.setDefaultButton(btnNo);
         msgBox.exec();
 
-        if (msgBox.clickedButton() != btnSi)
-            return;
+        if (msgBox.clickedButton() != btnSi) return;
 
         pulisciLayout(layoutForm);
         emit annulla(attivita);
+    });
+
+    connect(bottoneSalva, &QPushButton::clicked, this, [this]() {
+        salvaModifica();
+        emit salva(attivita);
     });
 
 }
@@ -74,4 +77,11 @@ void VistaModificaAttivita::pulisciLayout(QLayout* layout) {
         }
         delete item;
     }
+}
+
+void VistaModificaAttivita::salvaModifica() {
+    if (!attivita) return;
+
+    VisitorModificaAttivita visitor(campiForm);
+    attivita->accept(visitor);
 }

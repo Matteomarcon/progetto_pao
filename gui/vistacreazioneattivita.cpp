@@ -71,18 +71,16 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     connect(bottoneAnnulla, &QPushButton::clicked, this, [this]() {
         QMessageBox msgBox(this);
         msgBox.setWindowTitle("Conferma annullamento");
+        msgBox.setIcon(QMessageBox::Warning);
         msgBox.setText("Sei sicuro di voler annullare?\nLe modifiche andranno perse.");
 
-        QPushButton* btnSi =
-            msgBox.addButton("Conferma", QMessageBox::YesRole);
-        QPushButton* btnNo =
-            msgBox.addButton("Torna indietro", QMessageBox::NoRole);
+        QPushButton* btnSi = msgBox.addButton("Conferma", QMessageBox::YesRole);
+        QPushButton* btnNo = msgBox.addButton("Torna indietro", QMessageBox::NoRole);
 
         msgBox.setDefaultButton(btnNo);
         msgBox.exec();
 
-        if (msgBox.clickedButton() != btnSi)
-            return;
+        if (msgBox.clickedButton() != btnSi) return;
 
         pulisciLayout(layoutForm);
         tipoAttivita->setCurrentIndex(-1);
@@ -145,10 +143,10 @@ void VistaCreazioneAttivita::creaEvento() {
     creaAttivitaProgrammata();
 
     campiForm["organizzatore"] = new QLineEdit();
-    campiForm["luogo"] = new QLineEdit();
-
     layoutForm->addWidget(new QLabel("Organizzatore"));
     layoutForm->addWidget(campiForm["organizzatore"]);
+
+    campiForm["luogo"] = new QLineEdit();
     layoutForm->addWidget(new QLabel("Luogo"));
     layoutForm->addWidget(campiForm["luogo"]);
 }
@@ -156,15 +154,17 @@ void VistaCreazioneAttivita::creaLettura() {
     creaAttivitaLibera();
 
     campiForm["autore"] = new QLineEdit();
-    QSpinBox* pagine = new QSpinBox();
-    pagine->setMinimum(1);
-    campiForm["pagine"] = pagine;
-    campiForm["lingua"] = new QLineEdit();
-
     layoutForm->addWidget(new QLabel("Autore"));
     layoutForm->addWidget(campiForm["autore"]);
+
+    QSpinBox* pagine = new QSpinBox();
+    pagine->setMinimum(1);
+    pagine->setMaximum(9999);
+    campiForm["pagine"] = pagine;
     layoutForm->addWidget(new QLabel("Numero di pagine"));
     layoutForm->addWidget(campiForm["pagine"]);
+
+    campiForm["lingua"] = new QLineEdit();
     layoutForm->addWidget(new QLabel("Lingua"));
     layoutForm->addWidget(campiForm["lingua"]);
 }
@@ -172,7 +172,6 @@ void VistaCreazioneAttivita::creaPromemoria() {
     creaAttivitaLibera();
 
     campiForm["nota"] = new QLineEdit();
-
     layoutForm->addWidget(new QLabel("Nota"));
     layoutForm->addWidget(campiForm["nota"]);
 }
@@ -180,10 +179,10 @@ void VistaCreazioneAttivita::creaRiunione() {
     creaAttivitaProgrammata();
 
     campiForm["ordinedelgiorno"] = new QLineEdit();
-    campiForm["url"] = new QLineEdit();
-
     layoutForm->addWidget(new QLabel("Ordine del giorno"));
     layoutForm->addWidget(campiForm["ordinedelgiorno"]);
+
+    campiForm["url"] = new QLineEdit();
     layoutForm->addWidget(new QLabel("URL"));
     layoutForm->addWidget(campiForm["url"]);
 }
@@ -191,10 +190,10 @@ void VistaCreazioneAttivita::creaViaggio() {
     creaAttivitaProgrammata();
 
     campiForm["mezzoditrasporto"] = new QLineEdit();
-    campiForm["luogopartenza"] = new QLineEdit();
-
     layoutForm->addWidget(new QLabel("Mezzo di trasporto"));
     layoutForm->addWidget(campiForm["mezzoditrasporto"]);
+
+    campiForm["luogopartenza"] = new QLineEdit();
     layoutForm->addWidget(new QLabel("Luogo di partenza"));
     layoutForm->addWidget(campiForm["luogopartenza"]);
 
@@ -220,7 +219,7 @@ Attivita* VistaCreazioneAttivita::creaOggettoAttivita(){
     if (tipoAttivita->currentText() == "Evento") {
         return new Evento(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
                         qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
-                        QDateTime::currentDateTime(), //Da sistemare con data creazione
+                        QDateTime::currentDateTime(),
                         QDateTime::currentDateTime(),
                         qobject_cast<QDateTimeEdit*>(campiForm["datainizio"])->dateTime(),
                         qobject_cast<QDateTimeEdit*>(campiForm["datafine"])->dateTime(),
@@ -229,7 +228,7 @@ Attivita* VistaCreazioneAttivita::creaOggettoAttivita(){
     } else if (tipoAttivita->currentText() == "Lettura") {
         return new Lettura(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
                            qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
-                           QDateTime::currentDateTime(), //Da sistemare con data creazione
+                           QDateTime::currentDateTime(),
                            QDateTime::currentDateTime(),
                            qobject_cast<QComboBox*>(campiForm["stato"])->currentText(),
                            qobject_cast<QSpinBox*>(campiForm["priorita"])->value(),
@@ -239,7 +238,7 @@ Attivita* VistaCreazioneAttivita::creaOggettoAttivita(){
     } else if (tipoAttivita->currentText() == "Promemoria") {
         return new Promemoria(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
                               qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
-                              QDateTime::currentDateTime(), //Da sistemare con data creazione
+                              QDateTime::currentDateTime(),
                               QDateTime::currentDateTime(),
                               qobject_cast<QComboBox*>(campiForm["stato"])->currentText(),
                               qobject_cast<QSpinBox*>(campiForm["priorita"])->value(),
@@ -247,7 +246,7 @@ Attivita* VistaCreazioneAttivita::creaOggettoAttivita(){
     } else if (tipoAttivita->currentText() == "Riunione") {
         return new Riunione(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
                             qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
-                            QDateTime::currentDateTime(), //Da sistemare con data creazione
+                            QDateTime::currentDateTime(),
                             QDateTime::currentDateTime(),
                             qobject_cast<QDateTimeEdit*>(campiForm["datainizio"])->dateTime(),
                             qobject_cast<QDateTimeEdit*>(campiForm["datafine"])->dateTime(),
@@ -256,7 +255,7 @@ Attivita* VistaCreazioneAttivita::creaOggettoAttivita(){
     } else {
         return new Viaggio(qobject_cast<QLineEdit*>(campiForm["titolo"])->text(),
                         qobject_cast<QLineEdit*>(campiForm["descrizionebreve"])->text(),
-                        QDateTime::currentDateTime(), //Da sistemare con data creazione
+                        QDateTime::currentDateTime(),
                         QDateTime::currentDateTime(),
                         qobject_cast<QDateTimeEdit*>(campiForm["datainizio"])->dateTime(),
                         qobject_cast<QDateTimeEdit*>(campiForm["datafine"])->dateTime(),

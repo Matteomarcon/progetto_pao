@@ -55,8 +55,8 @@ private:
     VistaDefault* vistaDefault;
     VistaListaAttivita* vistaListaAttivita;
     VistaDettagliAttivita* vistaDettagliAttivita;
-    VistaModificaAttivita* vistaModificaAttivita;
     VistaCreazioneAttivita* vistaCreazioneAttivita;
+    VistaModificaAttivita* vistaModificaAttivita;
     bool modificheNonSalvate;
 
 public:

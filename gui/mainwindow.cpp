@@ -89,8 +89,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     divisore->addWidget(stack);
     divisore->setStretchFactor(0,1);
     divisore->setStretchFactor(1,2);
-
     setCentralWidget(divisore);
+
+    modificheNonSalvate = false;
+
     connect(vistaListaAttivita, &VistaListaAttivita::itemSelezionato, this, &MainWindow::mostraVistaDettagli);
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::annulla, this, &MainWindow::mostraVistaDefault);
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::salva, this, &MainWindow::salvaCreazione);
@@ -98,6 +100,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::elimina, this, &MainWindow::eliminaAttivita);
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::modifica, this, &MainWindow::mostraVistaModifica);
     connect(vistaModificaAttivita, &VistaModificaAttivita::annulla, this, &MainWindow::mostraVistaDettagli);
+    connect(vistaModificaAttivita, &VistaModificaAttivita::salva, this, &MainWindow::salvaModifica);
 
     connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
     connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
@@ -130,6 +133,7 @@ void MainWindow::mostraVistaCreazione() {
 }
 
 void MainWindow::mostraVistaModifica(Attivita* a) {
+    modificheNonSalvate = true;
     vistaModificaAttivita->setAttivita(a);
     stack->setCurrentIndex(3);
 }
@@ -138,6 +142,7 @@ void MainWindow::salvaCreazione(Attivita* a) {
     listaAttivita.append(a);
     vistaListaAttivita->aggiornaLista(listaAttivita);
     stack->setCurrentIndex(0);
+    modificheNonSalvate = true;
 }
 
 void MainWindow::eliminaAttivita(Attivita* a) {
@@ -145,15 +150,32 @@ void MainWindow::eliminaAttivita(Attivita* a) {
         delete a;
         vistaListaAttivita->aggiornaLista(listaAttivita);
         stack->setCurrentIndex(0);
-        //unsavedChanges = true;
+        modificheNonSalvate = true;
     }
 }
 
 void MainWindow::salvaModifica(Attivita* a) {
-
+    vistaListaAttivita->aggiornaLista(listaAttivita);
+    mostraVistaDettagli(a);
+    modificheNonSalvate = true;
 }
 
 void MainWindow::apriJson() {
+    if (modificheNonSalvate) {
+        QMessageBox msgBox(this);
+        msgBox.setWindowTitle("Modifiche non salvate");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText("Ci sono modifiche non salvate.\nSe continui, le modifiche andranno perse.\n\nVuoi continuare?");
+
+        QPushButton* btnSi = msgBox.addButton("Continua", QMessageBox::YesRole);
+        QPushButton* btnNo = msgBox.addButton("Torna indietro", QMessageBox::NoRole);
+
+        msgBox.setDefaultButton(btnNo);
+        msgBox.exec();
+
+        if (msgBox.clickedButton() != btnSi) return;
+    }
+
     pathJson = QFileDialog::getOpenFileName(this, "Seleziona un file JSON", "./", "*.json");
     if (pathJson.isEmpty()) return;
 
@@ -169,21 +191,20 @@ void MainWindow::apriJson() {
 }
 
 void MainWindow::salvaJson() {
-    //if (!unsavedChanges) return;
+    if (modificheNonSalvate) {
+        if(pathJson == "") {
+            salvaComeJson();
+        }
 
-    if(pathJson == "") {
-        salvaComeJson();
+        GestoreJson gestoreJson(pathJson);
+        gestoreJson.setListaAttivita(listaAttivita);
+        gestoreJson.salvaJson();
+
+        modificheNonSalvate = false;
     }
-
-    GestoreJson gestoreJson(pathJson);
-    gestoreJson.setListaAttivita(listaAttivita);
-    gestoreJson.salvaJson();
-
-    //unsavedChanges = false;
 }
 
 void MainWindow::salvaComeJson() {
-    //if (!unsavedChanges) return;
     pathJson = QFileDialog::getSaveFileName(this, "Crea nuovo file JSON", "./", "*.json");
     if (pathJson.isEmpty()) return;
     if (!pathJson.endsWith(".json", Qt::CaseInsensitive)) pathJson += ".json";
@@ -192,11 +213,26 @@ void MainWindow::salvaComeJson() {
     gestoreJson.setListaAttivita(listaAttivita);
     gestoreJson.salvaJson();
 
-    //unsavedChanges = false;
+    modificheNonSalvate = false;
 }
 
 
 void MainWindow::apriXml() {
+    if (modificheNonSalvate) {
+        QMessageBox msgBox(this);
+        msgBox.setWindowTitle("Modifiche non salvate");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText("Ci sono modifiche non salvate.\nSe continui, le modifiche andranno perse.\n\nVuoi continuare?");
+
+        QPushButton* btnSi = msgBox.addButton("Continua", QMessageBox::YesRole);
+        QPushButton* btnNo = msgBox.addButton("Torna indietro", QMessageBox::NoRole);
+
+        msgBox.setDefaultButton(btnNo);
+        msgBox.exec();
+
+        if (msgBox.clickedButton() != btnSi) return;
+    }
+
     pathXml = QFileDialog::getOpenFileName(this, "Seleziona un file XML", "./", "*.xml");
     if (pathXml.isEmpty()) return;
 
@@ -212,21 +248,20 @@ void MainWindow::apriXml() {
 }
 
 void MainWindow::salvaXml() {
-    //if (!unsavedChanges) return;
+    if (modificheNonSalvate) {
+        if(pathXml == "") {
+            salvaComeXml();
+        }
 
-    if(pathXml == "") {
-        salvaComeXml();
+        GestoreXml gestoreXml(pathXml);
+        gestoreXml.setListaAttivita(listaAttivita);
+        gestoreXml.salvaXml();
+
+        modificheNonSalvate = false;
     }
-
-    GestoreXml gestoreXml(pathXml);
-    gestoreXml.setListaAttivita(listaAttivita);
-    gestoreXml.salvaXml();
-
-    //unsavedChanges = false;
 }
 
 void MainWindow::salvaComeXml() {
-    //if (!unsavedChanges) return;
     pathXml = QFileDialog::getSaveFileName(this, "Crea nuovo file XML", "./", "*.xml");
     if (pathXml.isEmpty()) return;
     if (!pathXml.endsWith(".xml", Qt::CaseInsensitive)) pathXml += ".xml";
@@ -235,5 +270,5 @@ void MainWindow::salvaComeXml() {
     gestoreXml.setListaAttivita(listaAttivita);
     gestoreXml.salvaXml();
 
-    //unsavedChanges = false;
+    modificheNonSalvate = false;
 }
