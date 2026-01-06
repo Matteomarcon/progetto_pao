@@ -27,7 +27,7 @@ signals:
 private:
     QComboBox* tipoAttivita;
     QMap<QString, QWidget*> campiForm;
-    QVBoxLayout* layoutForm = nullptr;
+    QVBoxLayout* layoutForm;
     QPushButton* bottoneSalva;
     QPushButton* bottoneAnnulla;
 public:

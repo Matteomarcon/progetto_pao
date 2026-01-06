@@ -96,6 +96,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::salva, this, &MainWindow::salvaCreazione);
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::chiudi, this, &MainWindow::mostraVistaDefault);
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::elimina, this, &MainWindow::eliminaAttivita);
+    connect(vistaDettagliAttivita, &VistaDettagliAttivita::modifica, this, &MainWindow::mostraVistaModifica);
+    connect(vistaModificaAttivita, &VistaModificaAttivita::annulla, this, &MainWindow::mostraVistaDettagli);
 
     connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
     connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
@@ -106,7 +108,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(salvaComeXml, &QAction::triggered, this, &MainWindow::salvaComeXml);
 
     connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
-
 }
 
 MainWindow::~MainWindow(){
@@ -143,7 +144,7 @@ void MainWindow::eliminaAttivita(Attivita* a) {
     if (listaAttivita.removeOne(a)) {
         delete a;
         vistaListaAttivita->aggiornaLista(listaAttivita);
-        stack->setCurrentIndex(3);
+        stack->setCurrentIndex(0);
         //unsavedChanges = true;
     }
 }

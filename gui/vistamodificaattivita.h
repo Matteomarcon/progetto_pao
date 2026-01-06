@@ -3,18 +3,26 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QScrollArea>
+#include <QMessageBox>
 
 #include "attivita/attivita.h"
 
 class VistaModificaAttivita : public QWidget {
     Q_OBJECT
 signals:
-    void annulla();
+    void annulla(Attivita*);
     void salva(Attivita*);
 private:
     Attivita* attivita;
-    QPushButton* bottoneModifica;
-    QPushButton* bottoneElimina;
+
+    QLabel* labelTitolo;
+    QVBoxLayout* layoutForm;
+
+    QPushButton* bottoneSalva;
+    QPushButton* bottoneAnnulla;
     void salvaModifica();
 public:
     VistaModificaAttivita(QWidget *parent = nullptr);

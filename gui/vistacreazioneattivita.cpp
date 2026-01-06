@@ -90,7 +90,6 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
         bottoneAnnulla->hide();
         emit annulla();
     });
-
 }
 
 void VistaCreazioneAttivita::creaAttivita() {
