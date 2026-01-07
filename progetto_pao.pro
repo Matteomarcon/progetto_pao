@@ -23,6 +23,7 @@ SOURCES += \
     gui/visitorlistaattivita.cpp \
     gui/visitormodificaattivita.cpp \
     gui/visitorvistamodificaattivita.cpp \
+    gui/vistacalendario.cpp \
     gui/vistacreazioneattivita.cpp \
     gui/vistadefault.cpp \
     gui/vistadettagliattivita.cpp \
@@ -48,6 +49,7 @@ HEADERS += \
     gui/visitorlistaattivita.h \
     gui/visitormodificaattivita.h \
     gui/visitorvistamodificaattivita.h \
+    gui/vistacalendario.h \
     gui/vistacreazioneattivita.h \
     gui/vistadefault.h \
     gui/vistadettagliattivita.h \

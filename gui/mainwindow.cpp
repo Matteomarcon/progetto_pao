@@ -26,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     QAction* creaAttivita = new QAction(QIcon(":/icone/attivita.png"), "Crea attività", this);
     creaAttivita->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
 
+    QAction* mostraCalendario = new QAction(QIcon(":/icone/attivita.png"), "Mostra calendario", this);
+    mostraCalendario->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_A));
+
     menuApri = menuBar()->addMenu("Apri");
     menuApri->addAction(apriJson);
     menuApri->addAction(apriXml);
@@ -49,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     barraStrumenti->addAction(salvaComeXml);
     barraStrumenti->addSeparator();
     barraStrumenti->addAction(creaAttivita);
+    barraStrumenti->addAction(mostraCalendario);
 
     barraStrumenti->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     barraStrumenti->setIconSize(QSize(72, 72));
@@ -62,11 +66,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     vistaDettagliAttivita = new VistaDettagliAttivita(this);
     vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
     vistaModificaAttivita = new VistaModificaAttivita(this);
+    vistaCalendario = new vistacalendario(listaAttivita, this);
 
     stack->addWidget(vistaDefault);
     stack->addWidget(vistaDettagliAttivita);
     stack->addWidget(vistaCreazioneAttivita);
     stack->addWidget(vistaModificaAttivita);
+    stack->addWidget(vistaCalendario);
     stack->setCurrentIndex(0);
 
     QSplitter* divisore = new QSplitter(Qt::Horizontal, this);
@@ -111,6 +117,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(salvaComeXml, &QAction::triggered, this, &MainWindow::salvaComeXml);
 
     connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
+    connect(mostraCalendario, &QAction::triggered, this, &MainWindow::mostraVistaCalendario);
 }
 
 MainWindow::~MainWindow(){
@@ -135,6 +142,11 @@ void MainWindow::mostraVistaCreazione() {
 void MainWindow::mostraVistaModifica(Attivita* a) {
     vistaModificaAttivita->setAttivita(a);
     stack->setCurrentIndex(3);
+}
+
+void MainWindow::mostraVistaCalendario() {
+    vistaCalendario->aggiornaCalendario(listaAttivita);
+    stack->setCurrentIndex(4);
 }
 
 void MainWindow::salvaCreazione(Attivita* a) {

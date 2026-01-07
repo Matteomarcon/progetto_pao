@@ -20,6 +20,7 @@
 #include "vistacreazioneattivita.h"
 #include "vistadettagliattivita.h"
 #include "vistamodificaattivita.h"
+#include "vistacalendario.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -38,6 +39,7 @@ private slots:
     void mostraVistaDettagli(Attivita*);
     void mostraVistaCreazione();
     void mostraVistaModifica(Attivita*);
+    void mostraVistaCalendario();
 
     void salvaCreazione(Attivita*);
     void salvaModifica(Attivita*);
@@ -58,6 +60,7 @@ private:
     VistaDettagliAttivita* vistaDettagliAttivita;
     VistaCreazioneAttivita* vistaCreazioneAttivita;
     VistaModificaAttivita* vistaModificaAttivita;
+    vistacalendario* vistaCalendario;
     bool modificheNonSalvate;
 
 protected:
