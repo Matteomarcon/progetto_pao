@@ -195,12 +195,12 @@ void MainWindow::salvaJson() {
         if(pathJson == "") {
             salvaComeJson();
         }
-
-        GestoreJson gestoreJson(pathJson);
-        gestoreJson.setListaAttivita(listaAttivita);
-        gestoreJson.salvaJson();
-
-        modificheNonSalvate = false;
+        else {
+            GestoreJson gestoreJson(pathJson);
+            gestoreJson.setListaAttivita(listaAttivita);
+            gestoreJson.salvaJson();
+            modificheNonSalvate = false;
+        }
     }
 }
 
@@ -252,12 +252,12 @@ void MainWindow::salvaXml() {
         if(pathXml == "") {
             salvaComeXml();
         }
-
-        GestoreXml gestoreXml(pathXml);
-        gestoreXml.setListaAttivita(listaAttivita);
-        gestoreXml.salvaXml();
-
-        modificheNonSalvate = false;
+        else {
+            GestoreXml gestoreXml(pathXml);
+            gestoreXml.setListaAttivita(listaAttivita);
+            gestoreXml.salvaXml();
+            modificheNonSalvate = false;
+        }
     }
 }
 
