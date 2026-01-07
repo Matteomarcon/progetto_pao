@@ -133,7 +133,6 @@ void MainWindow::mostraVistaCreazione() {
 }
 
 void MainWindow::mostraVistaModifica(Attivita* a) {
-    modificheNonSalvate = true;
     vistaModificaAttivita->setAttivita(a);
     stack->setCurrentIndex(3);
 }
@@ -271,4 +270,25 @@ void MainWindow::salvaComeXml() {
     gestoreXml.salvaXml();
 
     modificheNonSalvate = false;
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+    if (modificheNonSalvate) {
+        QMessageBox msgBox(this);
+        msgBox.setWindowTitle("Modifiche non salvate");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText("Ci sono modifiche non salvate.\nSe continui, le modifiche andranno perse.\n\nVuoi continuare?");
+
+        QPushButton* btnSi = msgBox.addButton("Chiudi applicazione", QMessageBox::YesRole);
+        QPushButton* btnNo = msgBox.addButton("Torna indietro", QMessageBox::NoRole);
+
+        msgBox.setDefaultButton(btnNo);
+        msgBox.exec();
+
+        if (msgBox.clickedButton() == btnSi) event->accept();
+        else event->ignore();
+    }
+    else {
+        event->accept();
+    }
 }

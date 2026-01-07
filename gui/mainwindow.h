@@ -10,6 +10,7 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QFileDialog>
+#include <QCloseEvent>
 
 #include "attivita/attivita.h"
 #include "Json/GestoreJson.h"
@@ -58,6 +59,9 @@ private:
     VistaCreazioneAttivita* vistaCreazioneAttivita;
     VistaModificaAttivita* vistaModificaAttivita;
     bool modificheNonSalvate;
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 
 public:
     MainWindow(QWidget *parent = nullptr);
