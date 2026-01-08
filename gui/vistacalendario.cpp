@@ -30,7 +30,10 @@ vistacalendario::vistacalendario(QList<Attivita*> listaAttivita, QWidget *parent
 }
 
 void vistacalendario::aggiornaCalendario(const QList<Attivita*>& nuovaLista) {
-    calendario->setDateTextFormat(QDate(), QTextCharFormat());
+    for (auto it = giorniConAttivita.begin(); it != giorniConAttivita.end(); ++it) {
+        calendario->setDateTextFormat(it.key(), QTextCharFormat());
+    }
+    giorniConAttivita.clear();
 
     listaAttivita = nuovaLista;
 
