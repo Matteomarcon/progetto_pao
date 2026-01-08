@@ -21,6 +21,7 @@ SOURCES += \
     gui/mainwindow.cpp \
     gui/visitorlabel.cpp \
     gui/visitorlistaattivita.cpp \
+    gui/visitormatch.cpp \
     gui/visitormodificaattivita.cpp \
     gui/visitorvistamodificaattivita.cpp \
     gui/vistacalendario.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     gui/vistadettagliattivita.cpp \
     gui/vistalistaattivita.cpp \
     gui/vistamodificaattivita.cpp \
+    gui/widgetfiltri.cpp \
     json/gestorejson.cpp \
     main.cpp \
     xml/GestoreXml.cpp
@@ -47,6 +49,7 @@ HEADERS += \
     gui/mainwindow.h \
     gui/visitorlabel.h \
     gui/visitorlistaattivita.h \
+    gui/visitormatch.h \
     gui/visitormodificaattivita.h \
     gui/visitorvistamodificaattivita.h \
     gui/vistacalendario.h \
@@ -55,6 +58,7 @@ HEADERS += \
     gui/vistadettagliattivita.h \
     gui/vistalistaattivita.h \
     gui/vistamodificaattivita.h \
+    gui/widgetfiltri.h \
     json/gestorejson.h \
     xml/GestoreXml.h
 

@@ -21,6 +21,7 @@
 #include "vistadettagliattivita.h"
 #include "vistamodificaattivita.h"
 #include "vistacalendario.h"
+#include "widgetfiltri.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -45,6 +46,8 @@ private slots:
     void salvaModifica(Attivita*);
     void eliminaAttivita(Attivita*);
 
+    void filtraLista();
+
 private:
     QList<Attivita*> listaAttivita;
     QToolBar* barraStrumenti;
@@ -54,7 +57,7 @@ private:
     QStackedWidget* stack;
     QString pathJson;
     QString pathXml;
-    //pannelloRicerca* pannelloRicerca;
+    widgetFiltri* pannelloRicerca;
     VistaDefault* vistaDefault;
     VistaListaAttivita* vistaListaAttivita;
     VistaDettagliAttivita* vistaDettagliAttivita;

@@ -35,3 +35,21 @@ void VistaListaAttivita::deseleziona() {
     widgetLista->clearFocus();
     widgetLista->setCurrentItem(nullptr);
 }
+
+void VistaListaAttivita::filtra(const QString& ricerca, const QString& tipoAttivita, const QDateTime& dataInizio, const QDateTime& dataFine) {
+    for (int i=0; i<widgetLista->count(); i++) {
+        QListWidgetItem* item = widgetLista->item(i);
+        bool match = item->text().toLower().contains(ricerca.toLower());
+        if (match) {
+            VisitorMatch visitor(tipoAttivita, dataInizio, dataFine);
+            mappaItemAttivita[item]->accept(visitor);
+            match = visitor.getMatch();
+        }
+        item->setHidden(!match);
+    }
+}
+
+
+
+
+

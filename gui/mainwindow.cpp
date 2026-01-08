@@ -67,6 +67,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
     vistaModificaAttivita = new VistaModificaAttivita(this);
     vistaCalendario = new vistacalendario(listaAttivita, this);
+    pannelloRicerca = new widgetFiltri(this);
 
     stack->addWidget(vistaDefault);
     stack->addWidget(vistaDettagliAttivita);
@@ -89,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 
     layoutColonnaSinistra->setSpacing(0);
     layoutColonnaSinistra->setContentsMargins(0, 0, 0, 0);
+    layoutColonnaSinistra->addWidget(pannelloRicerca);
     layoutColonnaSinistra->addWidget(vistaListaAttivita);
 
     divisore->addWidget(colonnaSinistra);
@@ -118,6 +120,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
 
     connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
     connect(mostraCalendario, &QAction::triggered, this, &MainWindow::mostraVistaCalendario);
+
+    connect(pannelloRicerca->getBarraRicerca(), &QLineEdit::textChanged, this, &MainWindow::filtraLista);
+    connect(pannelloRicerca->getDataInizio(), &QDateTimeEdit::dateTimeChanged, this, &MainWindow::filtraLista);
+    connect(pannelloRicerca->getDataFine(), &QDateTimeEdit::dateTimeChanged, this, &MainWindow::filtraLista);
+    connect(pannelloRicerca->getTipoAttivita(), &QComboBox::currentIndexChanged, this, &MainWindow::filtraLista);
 }
 
 MainWindow::~MainWindow(){
@@ -303,4 +310,9 @@ void MainWindow::closeEvent(QCloseEvent* event) {
     else {
         event->accept();
     }
+}
+
+void MainWindow::filtraLista() {
+    vistaListaAttivita->filtra(pannelloRicerca->getBarraRicerca()->text(), pannelloRicerca->getTipoAttivita()->currentText(),
+                               pannelloRicerca->getDataInizio()->dateTime(), pannelloRicerca->getDataFine()->dateTime());
 }
