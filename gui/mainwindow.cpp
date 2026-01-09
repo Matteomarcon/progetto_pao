@@ -66,8 +66,8 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     vistaDettagliAttivita = new VistaDettagliAttivita(this);
     vistaCreazioneAttivita = new VistaCreazioneAttivita(this);
     vistaModificaAttivita = new VistaModificaAttivita(this);
-    vistaCalendario = new vistacalendario(listaAttivita, this);
-    pannelloRicerca = new widgetFiltri(this);
+    vistaCalendario = new VistaCalendario(listaAttivita, this);
+    pannelloRicerca = new WidgetFiltri(this);
 
     stack->addWidget(vistaDefault);
     stack->addWidget(vistaDettagliAttivita);

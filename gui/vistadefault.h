@@ -8,7 +8,7 @@
 class VistaDefault : public QWidget{
     Q_OBJECT
 public:
-    VistaDefault(QWidget *parent = nullptr);
+    VistaDefault(QWidget* parent = nullptr);
 };
 
 #endif // VISTADEFAULT_H

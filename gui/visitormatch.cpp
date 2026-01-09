@@ -1,6 +1,6 @@
 #include "visitormatch.h"
 
-VisitorMatch::VisitorMatch(QString tipoAttivita, QDateTime dataInizio, QDateTime dataFine): tipoAttivita(tipoAttivita),
+VisitorMatch::VisitorMatch(const QString& tipoAttivita, const QDateTime& dataInizio, const QDateTime& dataFine): tipoAttivita(tipoAttivita),
     dataInizio(dataInizio), dataFine(dataFine) {}
 
 bool VisitorMatch::getMatch() {

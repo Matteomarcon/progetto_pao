@@ -12,21 +12,21 @@
 #include <QVBoxLayout>
 #include <QWidget>
 
-class widgetFiltri : public QWidget {
+class WidgetFiltri : public QWidget {
     Q_OBJECT
 private:
-    QComboBox *tipoAttivita;
-    QLineEdit *barraRicerca;
-    QMap<QString, QWidget *> widgets;
+    QComboBox* tipoAttivita;
+    QLineEdit* barraRicerca;
+    QMap<QString, QWidget*> widgets;
     bool visibile;
 
 public:
-    widgetFiltri(QWidget *parent = nullptr);
+    WidgetFiltri(QWidget* parent = nullptr);
     void mostraFiltri();
-    QLineEdit *getBarraRicerca() const;
-    QDateTimeEdit *getDataInizio() const;
-    QDateTimeEdit *getDataFine() const;
-    QComboBox *getTipoAttivita();
+    QLineEdit* getBarraRicerca() const;
+    QDateTimeEdit* getDataInizio() const;
+    QDateTimeEdit* getDataFine() const;
+    QComboBox* getTipoAttivita();
 };
 
 #endif // WIDGETFILTRI_H

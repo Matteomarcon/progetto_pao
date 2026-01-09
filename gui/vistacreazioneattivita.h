@@ -31,7 +31,7 @@ private:
     QPushButton* bottoneSalva;
     QPushButton* bottoneAnnulla;
 public:
-    VistaCreazioneAttivita(QWidget *parent = nullptr);
+    VistaCreazioneAttivita(QWidget* parent = nullptr);
     void creaAttivita();
     void creaAttivitaProgrammata();
     void creaAttivitaLibera();

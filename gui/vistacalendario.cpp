@@ -2,7 +2,7 @@
 #include "attivita/attivitaprogrammata.h"
 
 
-vistacalendario::vistacalendario(QList<Attivita*> listaAttivita, QWidget *parent)
+VistaCalendario::VistaCalendario(QList<Attivita*> listaAttivita, QWidget *parent)
     : listaAttivita(listaAttivita) ,QWidget{parent}
 {
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
@@ -26,10 +26,10 @@ vistacalendario::vistacalendario(QList<Attivita*> listaAttivita, QWidget *parent
     connect(bottoneChiudi, &QPushButton::clicked, this, [this]() {
         emit chiudi();
     });
-    connect(calendario, &QCalendarWidget::clicked, this, &vistacalendario::onDataSelezionata);
+    connect(calendario, &QCalendarWidget::clicked, this, &VistaCalendario::onDataSelezionata);
 }
 
-void vistacalendario::aggiornaCalendario(const QList<Attivita*>& nuovaLista) {
+void VistaCalendario::aggiornaCalendario(const QList<Attivita*>& nuovaLista) {
     for (auto it = giorniConAttivita.begin(); it != giorniConAttivita.end(); ++it) {
         calendario->setDateTextFormat(it.key(), QTextCharFormat());
     }
@@ -63,7 +63,7 @@ void vistacalendario::aggiornaCalendario(const QList<Attivita*>& nuovaLista) {
     }
 }
 
-void vistacalendario::onDataSelezionata(const QDate &date) {
+void VistaCalendario::onDataSelezionata(const QDate &date) {
     QLocale it(QLocale::Italian, QLocale::Italy);
     labelDescrizione->setText("Nel giorno " + it.toString(date, QLocale::LongFormat) + " hai programmato " + QString::number(giorniConAttivita[date]) + " attività");
 }

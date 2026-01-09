@@ -19,7 +19,7 @@ private:
     QListWidget* widgetLista;
     std::map<QListWidgetItem*, Attivita*> mappaItemAttivita;
 public:
-    VistaListaAttivita(QList<Attivita*>, QWidget *parent = nullptr);
+    VistaListaAttivita(QList<Attivita*>, QWidget* parent = nullptr);
 
     void aggiornaLista(const QList<Attivita*>&);
     void deseleziona();

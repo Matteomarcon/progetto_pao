@@ -57,13 +57,13 @@ private:
     QStackedWidget* stack;
     QString pathJson;
     QString pathXml;
-    widgetFiltri* pannelloRicerca;
+    WidgetFiltri* pannelloRicerca;
     VistaDefault* vistaDefault;
     VistaListaAttivita* vistaListaAttivita;
     VistaDettagliAttivita* vistaDettagliAttivita;
     VistaCreazioneAttivita* vistaCreazioneAttivita;
     VistaModificaAttivita* vistaModificaAttivita;
-    vistacalendario* vistaCalendario;
+    VistaCalendario* vistaCalendario;
     bool modificheNonSalvate;
 
 protected:

@@ -11,15 +11,14 @@
 #include "attivita/riunione.h"
 #include "attivita/viaggio.h"
 
-class VisitorMatch: public VisitorInterface
-{
+class VisitorMatch: public VisitorInterface {
 private:
     bool match;
     QString tipoAttivita;
     QDateTime dataInizio;
     QDateTime dataFine;
 public:
-    VisitorMatch(QString, QDateTime, QDateTime);
+    VisitorMatch(const QString&, const QDateTime&, const QDateTime&);
     bool getMatch();
 
     virtual void visit(const Evento&);

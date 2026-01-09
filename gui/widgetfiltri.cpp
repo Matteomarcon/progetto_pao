@@ -1,6 +1,6 @@
 #include "widgetfiltri.h"
 
-widgetFiltri::widgetFiltri(QWidget *parent)
+WidgetFiltri::WidgetFiltri(QWidget *parent)
     : QWidget{parent}, visibile{true}
 {
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
@@ -47,26 +47,26 @@ widgetFiltri::widgetFiltri(QWidget *parent)
     setLayout(layoutPrincipale);
     mostraFiltri();
 
-    connect(bottoneFiltri, &QPushButton::pressed, this, &widgetFiltri::mostraFiltri);
+    connect(bottoneFiltri, &QPushButton::pressed, this, &WidgetFiltri::mostraFiltri);
 }
 
-QLineEdit* widgetFiltri::getBarraRicerca() const {
+QLineEdit* WidgetFiltri::getBarraRicerca() const {
     return barraRicerca;
 }
 
-QDateTimeEdit* widgetFiltri::getDataInizio() const {
+QDateTimeEdit* WidgetFiltri::getDataInizio() const {
     return qobject_cast<QDateTimeEdit*>(widgets["dataInizio"]);
 }
 
-QDateTimeEdit* widgetFiltri::getDataFine() const {
+QDateTimeEdit* WidgetFiltri::getDataFine() const {
     return qobject_cast<QDateTimeEdit*>(widgets["dataFine"]);
 }
 
-QComboBox* widgetFiltri::getTipoAttivita() {
+QComboBox* WidgetFiltri::getTipoAttivita() {
     return tipoAttivita;
 }
 
-void widgetFiltri::mostraFiltri() {
+void WidgetFiltri::mostraFiltri() {
     if (visibile) {
         for (auto key : widgets.keys()) {
             qobject_cast<QComboBox*>(widgets["tipoAttivita"])->setCurrentIndex(0);

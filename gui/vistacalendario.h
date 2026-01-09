@@ -13,8 +13,7 @@
 #include <QTextCharFormat>
 #include <QLocale>
 
-class vistacalendario : public QWidget
-{
+class VistaCalendario : public QWidget {
     Q_OBJECT
 signals:
     void chiudi();
@@ -27,7 +26,7 @@ private:
     QPushButton* bottoneChiudi;
     QList<Attivita*> listaAttivita;
 public:
-    vistacalendario(QList<Attivita*>, QWidget *parent = nullptr);
+    VistaCalendario(QList<Attivita*>, QWidget* parent = nullptr);
     void aggiornaCalendario(const QList<Attivita*>&);
 };
 

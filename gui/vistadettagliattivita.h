@@ -26,7 +26,7 @@ private:
     QPushButton* bottoneElimina;
     QPushButton* bottoneChiudi;
 public:
-    VistaDettagliAttivita(QWidget *parent = nullptr);
+    VistaDettagliAttivita(QWidget* parent = nullptr);
     void setAttivita(Attivita*);
 };
 

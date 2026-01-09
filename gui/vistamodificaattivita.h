@@ -29,7 +29,7 @@ private:
 
     void salvaModifica();
 public:
-    VistaModificaAttivita(QWidget *parent = nullptr);
+    VistaModificaAttivita(QWidget* parent = nullptr);
     void setAttivita(Attivita*);
     void pulisciLayout(QLayout*);
 };
