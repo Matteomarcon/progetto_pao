@@ -159,6 +159,7 @@ void MainWindow::mostraVistaCalendario() {
 void MainWindow::salvaCreazione(Attivita* a) {
     listaAttivita.append(a);
     vistaListaAttivita->aggiornaLista(listaAttivita);
+    filtraLista();
     stack->setCurrentIndex(0);
     modificheNonSalvate = true;
 }
@@ -167,6 +168,7 @@ void MainWindow::eliminaAttivita(Attivita* a) {
     if (listaAttivita.removeOne(a)) {
         delete a;
         vistaListaAttivita->aggiornaLista(listaAttivita);
+        filtraLista();
         stack->setCurrentIndex(0);
         modificheNonSalvate = true;
     }
@@ -174,6 +176,7 @@ void MainWindow::eliminaAttivita(Attivita* a) {
 
 void MainWindow::salvaModifica(Attivita* a) {
     vistaListaAttivita->aggiornaLista(listaAttivita);
+    filtraLista();
     mostraVistaDettagli(a);
     modificheNonSalvate = true;
 }
