@@ -110,6 +110,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(vistaDettagliAttivita, &VistaDettagliAttivita::modifica, this, &MainWindow::mostraVistaModifica);
     connect(vistaModificaAttivita, &VistaModificaAttivita::annulla, this, &MainWindow::mostraVistaDettagli);
     connect(vistaModificaAttivita, &VistaModificaAttivita::salva, this, &MainWindow::salvaModifica);
+    connect(vistaCalendario, &VistaCalendario::chiudi, this, &MainWindow::mostraVistaDefault);
 
     connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
     connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);

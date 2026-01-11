@@ -4,9 +4,9 @@ WidgetFiltri::WidgetFiltri(QWidget *parent)
     : QWidget{parent}, visibile{true}
 {
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
-    QHBoxLayout* layoutRicerca = new QHBoxLayout(this);
-    QVBoxLayout* layoutFiltri = new QVBoxLayout(this);
-    QHBoxLayout* layoutDate = new QHBoxLayout(this);
+    QHBoxLayout* layoutRicerca = new QHBoxLayout();
+    QVBoxLayout* layoutFiltri = new QVBoxLayout();
+    QHBoxLayout* layoutDate = new QHBoxLayout();
 
     barraRicerca = new QLineEdit();
     barraRicerca->setPlaceholderText("Cerca un attività...");
