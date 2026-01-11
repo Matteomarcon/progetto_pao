@@ -2,9 +2,7 @@
 #include "attivita/attivitaprogrammata.h"
 
 
-VistaCalendario::VistaCalendario(QList<Attivita*> listaAttivita, QWidget *parent)
-    : listaAttivita(listaAttivita) ,QWidget{parent}
-{
+VistaCalendario::VistaCalendario(const QList<Attivita*>& listaAttivita, QWidget *parent) : QWidget{parent}, listaAttivita(listaAttivita) {
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
     QLabel* labelTitolo = new QLabel("Calendario delle attività programmate");
     labelDescrizione = new QLabel();

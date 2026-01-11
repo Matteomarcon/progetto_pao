@@ -1,8 +1,6 @@
 #include "widgetfiltri.h"
 
-WidgetFiltri::WidgetFiltri(QWidget *parent)
-    : QWidget{parent}, visibile{true}
-{
+WidgetFiltri::WidgetFiltri(QWidget *parent) : QWidget{parent}, visibile{true} {
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
     QHBoxLayout* layoutRicerca = new QHBoxLayout();
     QVBoxLayout* layoutFiltri = new QVBoxLayout();

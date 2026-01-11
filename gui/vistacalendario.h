@@ -18,15 +18,14 @@ class VistaCalendario : public QWidget {
 signals:
     void chiudi();
 private:
+    QList<Attivita*> listaAttivita;
     QCalendarWidget* calendario;
     QLabel* labelDescrizione;
     QMap<QDate, int> giorniConAttivita;
     void onDataSelezionata(const QDate&);
-
     QPushButton* bottoneChiudi;
-    QList<Attivita*> listaAttivita;
 public:
-    VistaCalendario(QList<Attivita*>, QWidget* parent = nullptr);
+    VistaCalendario(const QList<Attivita*>&, QWidget* parent = nullptr);
     void aggiornaCalendario(const QList<Attivita*>&);
 };
 

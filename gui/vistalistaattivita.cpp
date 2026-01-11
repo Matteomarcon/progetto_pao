@@ -1,6 +1,6 @@
 #include "vistalistaattivita.h"
 
-VistaListaAttivita::VistaListaAttivita(QList<Attivita*> listaAttivita, QWidget *parent): QWidget{parent}, listaAttivita(listaAttivita) {
+VistaListaAttivita::VistaListaAttivita(const QList<Attivita*>& listaAttivita, QWidget *parent): QWidget{parent}, listaAttivita(listaAttivita) {
     widgetLista = new QListWidget(this);
     widgetLista->setIconSize(QSize(48, 48));
 
