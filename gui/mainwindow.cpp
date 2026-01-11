@@ -1,13 +1,13 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
-    this->setWindowTitle("Gestore Attività Personali");
-    this->setWindowIcon(QIcon(":/icone/iconaApp.png"));
+    setWindowTitle("Gestore Attività Personali");
+    setWindowIcon(QIcon(":/icone/iconaApp.png"));
 
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->availableGeometry();
-    this->resize(screenGeometry.width()/2, screenGeometry.height()/2);
-    this->move(screenGeometry.center() - this->rect().center());
+    resize(screenGeometry.width()*3/4, screenGeometry.height()*3/4);
+    move(screenGeometry.center() - frameGeometry().center());
 
     QAction* apriJson = new QAction(QIcon(":/icone/json_apri.png"), "Apri JSON", this);
     apriJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_O));
