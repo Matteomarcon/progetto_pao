@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     QAction* creaAttivita = new QAction(QIcon(":/icone/attivita.png"), "Crea attività", this);
     creaAttivita->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
 
-    QAction* mostraCalendario = new QAction(QIcon(":/icone/attivita.png"), "Mostra calendario", this);
+    QAction* mostraCalendario = new QAction(QIcon(":/icone/calendario.png"), "Mostra calendario", this);
     mostraCalendario->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_A));
 
     menuApri = menuBar()->addMenu("Apri");
@@ -39,8 +39,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     menuSalva->addAction(salvaXml);
     menuSalva->addAction(salvaComeXml);
 
-    menuCrea = menuBar()->addMenu("Crea");
+    menuCrea = menuBar()->addMenu("Attività");
     menuCrea->addAction(creaAttivita);
+    menuCrea->addAction(mostraCalendario);
 
     barraStrumenti = addToolBar("barraStrumenti");
     barraStrumenti->addAction(apriJson);

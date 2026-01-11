@@ -13,5 +13,6 @@
         <file>icone/promemoria.png</file>
         <file>icone/riunione.png</file>
         <file>icone/viaggio.png</file>
+        <file>icone/calendario.png</file>
     </qresource>
 </RCC>
