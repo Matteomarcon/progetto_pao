@@ -12,6 +12,10 @@ VistaCalendario::VistaCalendario(const QList<Attivita*>& listaAttivita, QWidget 
 
     QHBoxLayout* layoutBottoni = new QHBoxLayout;
     bottoneChiudi = new QPushButton("Chiudi calendario");
+    bottoneChiudi->setToolTip("Chiudi calendario (Esc)");
+
+    QShortcut* shortcutChiudi = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(shortcutChiudi, &QShortcut::activated, bottoneChiudi, &QPushButton::click);
 
     layoutBottoni->addWidget(bottoneChiudi);
 

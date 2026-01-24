@@ -12,6 +12,7 @@
 #include <QCalendarWidget>
 #include <QTextCharFormat>
 #include <QLocale>
+#include <QShortcut>
 
 class VistaCalendario : public QWidget {
     Q_OBJECT

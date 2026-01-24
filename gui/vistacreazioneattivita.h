@@ -11,6 +11,7 @@
 #include <QDateTimeEdit>
 #include <QScrollArea>
 #include <QMessageBox>
+#include <QShortcut>
 
 #include "attivita/attivita.h"
 #include "attivita/evento.h"
@@ -30,6 +31,8 @@ private:
     QVBoxLayout* layoutForm;
     QPushButton* bottoneSalva;
     QPushButton* bottoneAnnulla;
+    QShortcut* shortcutSalva;
+    QShortcut* shortcutAnnulla;
 public:
     VistaCreazioneAttivita(QWidget* parent = nullptr);
     void creaAttivita();

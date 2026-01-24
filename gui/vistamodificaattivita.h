@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 #include <QScrollArea>
 #include <QMessageBox>
+#include <QShortcut>
 
 #include "attivita/attivita.h"
 

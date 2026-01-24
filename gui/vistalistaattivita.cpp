@@ -10,8 +10,10 @@ VistaListaAttivita::VistaListaAttivita(const QList<Attivita*>& listaAttivita, QW
     layoutPrincipale->addWidget(widgetLista);
     setLayout(layoutPrincipale);
 
-    connect(widgetLista, &QListWidget::itemClicked, this, [this](QListWidgetItem* item) {
-        if (mappaItemAttivita[item]) emit itemSelezionato(mappaItemAttivita[item]);
+    connect(widgetLista, &QListWidget::currentItemChanged, this, [this](QListWidgetItem* item) {
+        if (mappaItemAttivita[item]) {
+            emit itemSelezionato(mappaItemAttivita[item]);
+        }
     });
 }
 

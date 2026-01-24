@@ -5,6 +5,8 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QShortcut>
+#include <QMessageBox>
 
 #include "attivita/attivita.h"
 

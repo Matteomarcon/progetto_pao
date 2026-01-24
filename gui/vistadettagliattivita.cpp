@@ -12,6 +12,17 @@ VistaDettagliAttivita::VistaDettagliAttivita(QWidget *parent) : QWidget{parent} 
     bottoneModifica = new QPushButton("Modifica attività");
     bottoneChiudi = new QPushButton("Chiudi dettaglio");
 
+    bottoneElimina->setToolTip("Elimina attività (Canc)");
+    bottoneModifica->setToolTip("Modifica attività (Ctrl+M)");
+    bottoneChiudi->setToolTip("Chiudi dettaglio (Esc)");
+
+    QShortcut* shortcutElimina = new QShortcut(QKeySequence(Qt::Key_Delete), this);
+    connect(shortcutElimina, &QShortcut::activated, bottoneElimina, &QPushButton::click);
+    QShortcut* shortcutModifica = new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_M), this);
+    connect(shortcutModifica, &QShortcut::activated, bottoneModifica, &QPushButton::click);
+    QShortcut* shortcutAnnulla = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(shortcutAnnulla, &QShortcut::activated, bottoneChiudi, &QPushButton::click);
+
     layoutBottoni->addWidget(bottoneElimina);
     layoutBottoni->addWidget(bottoneModifica);
     layoutBottoni->addWidget(bottoneChiudi);
@@ -25,6 +36,19 @@ VistaDettagliAttivita::VistaDettagliAttivita(QWidget *parent) : QWidget{parent} 
         emit chiudi();
     });
     connect(bottoneElimina, &QPushButton::clicked, this, [this]() {
+        QMessageBox msgBox(this);
+        msgBox.setWindowTitle("Conferma eliminazione");
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setText("Sei sicuro di voler eliminare questa attività?\nL'attività andrà persa.");
+
+        QPushButton* btnSi = msgBox.addButton("Conferma", QMessageBox::YesRole);
+        QPushButton* btnNo = msgBox.addButton("Torna indietro", QMessageBox::NoRole);
+
+        msgBox.setDefaultButton(btnNo);
+        msgBox.exec();
+
+        if (msgBox.clickedButton() != btnSi) return;
+
         emit elimina(attivita);
     });
     connect(bottoneModifica, &QPushButton::clicked, this, [this]() {

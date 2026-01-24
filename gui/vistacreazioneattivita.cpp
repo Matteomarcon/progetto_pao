@@ -15,6 +15,13 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
     QHBoxLayout* layoutBottoni = new QHBoxLayout;
     bottoneSalva = new QPushButton("Crea attività");
     bottoneAnnulla = new QPushButton("Annulla");
+    bottoneSalva->setToolTip("Crea attività (Enter)");
+    bottoneAnnulla->setToolTip("Annulla (Esc)");
+
+    shortcutSalva = new QShortcut(QKeySequence(Qt::Key_Return), this);
+    connect(shortcutSalva, &QShortcut::activated, bottoneSalva, &QPushButton::click);
+    shortcutAnnulla = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(shortcutAnnulla, &QShortcut::activated, bottoneAnnulla, &QPushButton::click);
 
     layoutBottoni->addWidget(bottoneSalva);
     layoutBottoni->addWidget(bottoneAnnulla);
@@ -35,10 +42,14 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
 
     bottoneSalva->hide();
     bottoneAnnulla->hide();
+    shortcutSalva->setEnabled(false);
+    shortcutAnnulla->setEnabled(false);
 
     connect(tipoAttivita, &QComboBox::activated, this, [=](int index) {
         bottoneSalva->show();
         bottoneAnnulla->show();
+        shortcutSalva->setEnabled(true);
+        shortcutAnnulla->setEnabled(true);
 
         QString attivitaSelezionata = tipoAttivita->itemText(index);
 
@@ -65,6 +76,8 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
         tipoAttivita->setCurrentIndex(-1);
         bottoneSalva->hide();
         bottoneAnnulla->hide();
+        shortcutSalva->setEnabled(false);
+        shortcutAnnulla->setEnabled(false);
         emit salva(attivita);
     });
 
@@ -86,6 +99,8 @@ VistaCreazioneAttivita::VistaCreazioneAttivita(QWidget *parent): QWidget{parent}
         tipoAttivita->setCurrentIndex(-1);
         bottoneSalva->hide();
         bottoneAnnulla->hide();
+        shortcutSalva->setEnabled(false);
+        shortcutAnnulla->setEnabled(false);
         emit annulla();
     });
 }

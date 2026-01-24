@@ -8,6 +8,13 @@ VistaModificaAttivita::VistaModificaAttivita(QWidget *parent): QWidget{parent} {
     QHBoxLayout* layoutBottoni = new QHBoxLayout;
     bottoneSalva = new QPushButton("Salva modifica");
     bottoneAnnulla = new QPushButton("Annulla");
+    bottoneSalva->setToolTip("Salva modifica (Enter)");
+    bottoneAnnulla->setToolTip("Annulla (Esc)");
+
+    QShortcut* shortcutSalva = new QShortcut(QKeySequence(Qt::Key_Return), this);
+    connect(shortcutSalva, &QShortcut::activated, bottoneSalva, &QPushButton::click);
+    QShortcut* shortcutAnnulla = new QShortcut(QKeySequence(Qt::Key_Escape), this);
+    connect(shortcutAnnulla, &QShortcut::activated, bottoneAnnulla, &QPushButton::click);
 
     layoutBottoni->addWidget(bottoneSalva);
     layoutBottoni->addWidget(bottoneAnnulla);
