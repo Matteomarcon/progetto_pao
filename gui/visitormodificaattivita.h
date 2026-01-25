@@ -8,22 +8,23 @@
 #include <QComboBox>
 #include <QDateTimeEdit>
 
-#include <attivita/VisitorModifica.h>
+#include <attivita/VisitorInterface.h>
 #include "attivita/evento.h"
 #include "attivita/lettura.h"
 #include "attivita/promemoria.h"
 #include "attivita/riunione.h"
 #include "attivita/viaggio.h"
 
-class VisitorModificaAttivita: public VisitorModifica {
+class VisitorModificaAttivita: public VisitorInterface {
 private:
     QMap<QString, QWidget*> campiForm;
-public:
-    VisitorModificaAttivita(const QMap<QString, QWidget*>&);
 
     void modificaAttivita(Attivita&);
     void modificaProgrammata(AttivitaProgrammata&);
     void modificaLibera(AttivitaLibera&);
+public:
+    VisitorModificaAttivita(const QMap<QString, QWidget*>&);
+
     virtual void visit(Evento&);
     virtual void visit(Lettura&);
     virtual void visit(Promemoria&);

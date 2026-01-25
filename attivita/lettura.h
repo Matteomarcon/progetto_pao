@@ -19,8 +19,8 @@ public:
     void setPagine(int);
     void setLingua(QString);
 
+    virtual void accept(ConstVisitorInterface&);
     virtual void accept(VisitorInterface&);
-    virtual void accept(VisitorModifica&);
 
     virtual void toJson(QJsonObject&) const;
     virtual void toXml(QDomElement&) const;

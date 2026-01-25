@@ -1,37 +1,39 @@
-#include "visitormatch.h"
+#include "visitorfiltri.h"
 
-VisitorMatch::VisitorMatch(const QString& tipoAttivita, const QDateTime& dataInizio, const QDateTime& dataFine): tipoAttivita(tipoAttivita),
+VisitorFiltri::VisitorFiltri(const QString& tipoAttivita, const QDateTime& dataInizio, const QDateTime& dataFine): tipoAttivita(tipoAttivita),
     dataInizio(dataInizio), dataFine(dataFine) {}
 
-bool VisitorMatch::getMatch() {
+bool VisitorFiltri::getMatch() {
     return match;
 }
 
-//CONTROLLI DATA INIZIO DATA FINE
-
-void VisitorMatch::visit(const Evento& evento){
+void VisitorFiltri::visit(const Evento& evento){
     (void) evento;
     match = tipoAttivita.contains("Evento") || tipoAttivita.contains("Tutte le attività");
     if (match) {
         match = (evento.getDataInizio()>=dataInizio && evento.getDataFine()<=dataFine);
     }
 }
-void VisitorMatch::visit(const Lettura& lettura){
+
+void VisitorFiltri::visit(const Lettura& lettura){
     (void) lettura;
     match = tipoAttivita.contains("Lettura") || tipoAttivita.contains("Tutte le attività");
 }
-void VisitorMatch::visit(const Promemoria& promemoria){
+
+void VisitorFiltri::visit(const Promemoria& promemoria){
     (void) promemoria;
     match = tipoAttivita.contains("Promemoria") || tipoAttivita.contains("Tutte le attività");
 }
-void VisitorMatch::visit(const Riunione& riunione){
+
+void VisitorFiltri::visit(const Riunione& riunione){
     (void) riunione;
     match = tipoAttivita.contains("Riunione") || tipoAttivita.contains("Tutte le attività");
     if (match) {
         match = (riunione.getDataInizio()>=dataInizio && riunione.getDataFine()<=dataFine);
     }
 }
-void VisitorMatch::visit(const Viaggio& viaggio){
+
+void VisitorFiltri::visit(const Viaggio& viaggio){
     (void) viaggio;
     match = tipoAttivita.contains("Viaggio") || tipoAttivita.contains("Tutte le attività");
     if (match) {

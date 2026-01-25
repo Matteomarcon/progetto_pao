@@ -28,7 +28,6 @@ public:
 
     const QList<Attivita*>& getListaAttivita() const;
     void setListaAttivita(QList<Attivita*>);
-
     void apriJson();
     bool salvaJson();
 };

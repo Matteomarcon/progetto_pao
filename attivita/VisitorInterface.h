@@ -11,11 +11,11 @@ class VisitorInterface {
 public:
     virtual ~VisitorInterface() = default;
 
-    virtual void visit(const Evento&) = 0;
-    virtual void visit(const Lettura&) = 0;
-    virtual void visit(const Promemoria&) = 0;
-    virtual void visit(const Riunione&) = 0;
-    virtual void visit(const Viaggio&) = 0;
+    virtual void visit(Evento&) = 0;
+    virtual void visit(Lettura&) = 0;
+    virtual void visit(Promemoria&) = 0;
+    virtual void visit(Riunione&) = 0;
+    virtual void visit(Viaggio&) = 0;
 };
 
 #endif // VISITORINTERFACE_H

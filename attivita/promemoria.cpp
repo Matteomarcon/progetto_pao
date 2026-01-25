@@ -7,10 +7,10 @@ QString Promemoria::getNota() const {return nota;}
 
 void Promemoria::setNota(QString nota) {this->nota = nota;}
 
-void Promemoria::accept(VisitorInterface& visitor){
+void Promemoria::accept(ConstVisitorInterface& visitor){
     visitor.visit(*this);
 }
-void Promemoria::accept(VisitorModifica& visitor){
+void Promemoria::accept(VisitorInterface& visitor){
     visitor.visit(*this);
 }
 

@@ -19,9 +19,9 @@ SOURCES += \
     attivita/riunione.cpp \
     attivita/viaggio.cpp \
     gui/mainwindow.cpp \
-    gui/visitorlabel.cpp \
+    gui/visitordettagli.cpp \
+    gui/visitorfiltri.cpp \
     gui/visitorlistaattivita.cpp \
-    gui/visitormatch.cpp \
     gui/visitormodificaattivita.cpp \
     gui/visitorvistamodificaattivita.cpp \
     gui/vistacalendario.cpp \
@@ -36,8 +36,8 @@ SOURCES += \
     xml/GestoreXml.cpp
 
 HEADERS += \
+    attivita/ConstVisitorInterface.h \
     attivita/VisitorInterface.h \
-    attivita/VisitorModifica.h \
     attivita/attivita.h \
     attivita/attivitalibera.h \
     attivita/attivitaprogrammata.h \
@@ -47,9 +47,9 @@ HEADERS += \
     attivita/riunione.h \
     attivita/viaggio.h \
     gui/mainwindow.h \
-    gui/visitorlabel.h \
+    gui/visitordettagli.h \
+    gui/visitorfiltri.h \
     gui/visitorlistaattivita.h \
-    gui/visitormatch.h \
     gui/visitormodificaattivita.h \
     gui/visitorvistamodificaattivita.h \
     gui/vistacalendario.h \

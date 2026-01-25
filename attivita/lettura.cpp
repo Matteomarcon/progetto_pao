@@ -11,10 +11,10 @@ void Lettura::setAutore(QString autore) {this->autore = autore;}
 void Lettura::setPagine(int pagine) {this->pagine = pagine;}
 void Lettura::setLingua(QString lingua) {this->lingua = lingua;}
 
-void Lettura::accept(VisitorInterface& visitor){
+void Lettura::accept(ConstVisitorInterface& visitor){
     visitor.visit(*this);
 }
-void Lettura::accept(VisitorModifica& visitor){
+void Lettura::accept(VisitorInterface& visitor){
     visitor.visit(*this);
 }
 

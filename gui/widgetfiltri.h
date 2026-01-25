@@ -19,10 +19,10 @@ private:
     QLineEdit* barraRicerca;
     QMap<QString, QWidget*> widgets;
     bool visibile;
-
+    void mostraFiltri();
 public:
     WidgetFiltri(QWidget* parent = nullptr);
-    void mostraFiltri();
+
     QLineEdit* getBarraRicerca() const;
     QDateTimeEdit* getDataInizio() const;
     QDateTimeEdit* getDataFine() const;

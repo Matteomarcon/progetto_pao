@@ -13,8 +13,8 @@ public:
     QString getNota() const;
     void setNota(QString);
 
+    virtual void accept(ConstVisitorInterface&);
     virtual void accept(VisitorInterface&);
-    virtual void accept(VisitorModifica&);
 
     virtual void toJson(QJsonObject&) const;
     virtual void toXml(QDomElement&) const;

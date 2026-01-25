@@ -22,7 +22,6 @@ signals:
 private:
     Attivita* attivita;
     QLabel* labelTitolo;
-
     QVBoxLayout* layoutForm;
     QMap<QString, QWidget*> campiForm;
     QPushButton* bottoneSalva;
@@ -31,6 +30,7 @@ private:
     void salvaModifica();
 public:
     VistaModificaAttivita(QWidget* parent = nullptr);
+
     void setAttivita(Attivita*);
     void pulisciLayout(QLayout*);
 };

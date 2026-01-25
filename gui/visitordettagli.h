@@ -1,7 +1,7 @@
-#ifndef VISITORLABEL_H
-#define VISITORLABEL_H
+#ifndef VISITORDETTAGLI_H
+#define VISITORDETTAGLI_H
 
-#include <attivita/VisitorInterface.h>
+#include <attivita/ConstVisitorInterface.h>
 
 #include "attivita/evento.h"
 #include "attivita/lettura.h"
@@ -9,15 +9,16 @@
 #include "attivita/riunione.h"
 #include "attivita/viaggio.h"
 
-class VisitorLabel : public VisitorInterface {
+class VisitorDettagli : public ConstVisitorInterface {
 private:
     QList<QString> listaLabel;
-public:
-    QList<QString> getListaLabel();
 
     void labelAttivita(const Attivita&);
     void labelAttivitaLibera(const AttivitaLibera&);
     void labelAttivitaProgrammata(const AttivitaProgrammata&);
+public:
+    QList<QString> getListaLabel();
+
     virtual void visit(const Evento&);
     virtual void visit(const Lettura&);
     virtual void visit(const Promemoria&);
@@ -25,4 +26,4 @@ public:
     virtual void visit(const Viaggio&);
 };
 
-#endif // VISITORLABEL_H
+#endif // VISITORDETTAGLI_H

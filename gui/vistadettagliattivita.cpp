@@ -1,5 +1,5 @@
 #include "vistadettagliattivita.h"
-#include "gui/visitorlabel.h"
+#include "gui/visitordettagli.h"
 
 VistaDettagliAttivita::VistaDettagliAttivita(QWidget *parent) : QWidget{parent} {
     QVBoxLayout* layoutPrincipale = new QVBoxLayout(this);
@@ -68,7 +68,7 @@ void VistaDettagliAttivita::setAttivita(Attivita* a) {
     }
     listaLabel.clear();
 
-    VisitorLabel visitor;
+    VisitorDettagli visitor;
     attivita->accept(visitor);
     QList<QString> specificAttr = visitor.getListaLabel();
 

@@ -3,14 +3,14 @@
 
 #include <QListWidgetItem>
 
-#include <attivita/VisitorInterface.h>
+#include <attivita/ConstVisitorInterface.h>
 #include "attivita/evento.h"
 #include "attivita/lettura.h"
 #include "attivita/promemoria.h"
 #include "attivita/riunione.h"
 #include "attivita/viaggio.h"
 
-class VisitorListaAttivita : public VisitorInterface {
+class VisitorListaAttivita : public ConstVisitorInterface {
 private:
     QListWidgetItem* item;
 public:

@@ -1,8 +1,8 @@
 #ifndef ATTIVITA_H
 #define ATTIVITA_H
 
+#include "ConstVisitorInterface.h"
 #include "VisitorInterface.h"
-#include "VisitorModifica.h"
 
 #include <QJsonObject>
 #include <QDomDocument>
@@ -26,8 +26,8 @@ public:
     void setDataCreazione(QDateTime);
     void setUltimaModifica(QDateTime);
 
+    virtual void accept(ConstVisitorInterface&) = 0;
     virtual void accept(VisitorInterface&) = 0;
-    virtual void accept(VisitorModifica&) = 0;
     virtual void toJson(QJsonObject&) const = 0;
     virtual void toXml(QDomElement&) const = 0;
 };

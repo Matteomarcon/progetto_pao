@@ -10,7 +10,6 @@
 
 #include "attivita/attivita.h"
 
-
 class VistaDettagliAttivita : public QWidget {
     Q_OBJECT
 signals:
@@ -19,16 +18,15 @@ signals:
     void chiudi();
 private:
     Attivita* attivita;
-
     QLabel* labelTitolo;
     QVBoxLayout* layout;
     QList<QLabel*> listaLabel;
-
     QPushButton* bottoneModifica;
     QPushButton* bottoneElimina;
     QPushButton* bottoneChiudi;
 public:
     VistaDettagliAttivita(QWidget* parent = nullptr);
+
     void setAttivita(Attivita*);
 };
 

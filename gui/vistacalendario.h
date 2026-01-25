@@ -27,6 +27,7 @@ private:
     QPushButton* bottoneChiudi;
 public:
     VistaCalendario(const QList<Attivita*>&, QWidget* parent = nullptr);
+
     void aggiornaCalendario(const QList<Attivita*>&);
 };
 

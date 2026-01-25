@@ -26,7 +26,6 @@ public:
 
     const QList<Attivita*>& getListaAttivita() const;
     void setListaAttivita(QList<Attivita*>);
-
     void apriXml();
     bool salvaXml();
 };

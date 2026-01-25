@@ -9,10 +9,10 @@ QString Evento::getLuogo() const {return luogo;}
 void Evento::setOrganizzatore(QString organizzatore) {this->organizzatore = organizzatore;}
 void Evento::setLuogo(QString luogo) {this->luogo = luogo;}
 
-void Evento::accept(VisitorInterface& visitor){
+void Evento::accept(ConstVisitorInterface& visitor){
     visitor.visit(*this);
 }
-void Evento::accept(VisitorModifica& visitor){
+void Evento::accept(VisitorInterface& visitor){
     visitor.visit(*this);
 }
 

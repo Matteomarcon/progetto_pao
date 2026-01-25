@@ -66,16 +66,15 @@ QComboBox* WidgetFiltri::getTipoAttivita() {
 
 void WidgetFiltri::mostraFiltri() {
     if (visibile) {
-        for (auto key : widgets.keys()) {
-            qobject_cast<QComboBox*>(widgets["tipoAttivita"])->setCurrentIndex(0);
-            qobject_cast<QDateTimeEdit*>(widgets["dataInizio"])->setDateTime(QDateTime::currentDateTime().addYears(-1));
-            qobject_cast<QDateTimeEdit*>(widgets["dataFine"])->setDateTime(QDateTime::currentDateTime().addYears(1));
-            widgets[key]->hide();
+        tipoAttivita->setCurrentIndex(0);
+        getDataInizio()->setDateTime(QDateTime::currentDateTime().addYears(-1));
+        getDataFine()->setDateTime(QDateTime::currentDateTime().addYears(1));
+        for (auto w : widgets) {
+            w->hide();
         }
-    }
-    else {
-        for (auto key : widgets.keys()) {
-            widgets[key]->show();
+    } else {
+        for (auto w : widgets) {
+            w->show();
         }
     }
     visibile = !visibile;

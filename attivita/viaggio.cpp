@@ -9,10 +9,10 @@ QString Viaggio::getLuogoPartenza() const {return luogoPartenza;}
 void Viaggio::setMezzoDiTrasporto(QString mezzoDiTrasporto) {this->mezzoDiTrasporto = mezzoDiTrasporto;}
 void Viaggio::setLuogoPartenza(QString luogoPartenza) {this->luogoPartenza = luogoPartenza;}
 
-void Viaggio::accept(VisitorInterface& visitor){
+void Viaggio::accept(ConstVisitorInterface& visitor){
     visitor.visit(*this);
 }
-void Viaggio::accept(VisitorModifica& visitor){
+void Viaggio::accept(VisitorInterface& visitor){
     visitor.visit(*this);
 }
 

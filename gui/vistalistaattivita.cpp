@@ -43,7 +43,7 @@ void VistaListaAttivita::filtra(const QString& ricerca, const QString& tipoAttiv
         QListWidgetItem* item = widgetLista->item(i);
         bool match = item->text().toLower().contains(ricerca.toLower());
         if (match) {
-            VisitorMatch visitor(tipoAttivita, dataInizio, dataFine);
+            VisitorFiltri visitor(tipoAttivita, dataInizio, dataFine);
             mappaItemAttivita[item]->accept(visitor);
             match = visitor.getMatch();
         }

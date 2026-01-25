@@ -33,11 +33,13 @@ private:
     QPushButton* bottoneAnnulla;
     QShortcut* shortcutSalva;
     QShortcut* shortcutAnnulla;
-public:
-    VistaCreazioneAttivita(QWidget* parent = nullptr);
+
     void creaAttivita();
     void creaAttivitaProgrammata();
     void creaAttivitaLibera();
+public:
+    VistaCreazioneAttivita(QWidget* parent = nullptr);
+
     void creaEvento();
     void creaLettura();
     void creaPromemoria();

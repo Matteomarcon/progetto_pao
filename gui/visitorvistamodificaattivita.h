@@ -10,7 +10,7 @@
 #include <QComboBox>
 #include <QSpinBox>
 
-#include <attivita/VisitorInterface.h>
+#include <attivita/ConstVisitorInterface.h>
 #include "attivita/attivita.h"
 #include "attivita/evento.h"
 #include "attivita/lettura.h"
@@ -18,18 +18,18 @@
 #include "attivita/riunione.h"
 #include "attivita/viaggio.h"
 
-class VisitorVistaModificaAttivita: public VisitorInterface {
+class VisitorVistaModificaAttivita: public ConstVisitorInterface {
 private:
     QMap<QString, QWidget*> campiForm;
     QVBoxLayout* layoutForm;
-public:
-    VisitorVistaModificaAttivita(QMap<QString, QWidget*>, QVBoxLayout*);
-
-    QMap<QString, QWidget*> getCampiForm();
 
     void modificaAttivita(const Attivita&);
     void modificaProgrammata(const AttivitaProgrammata&);
     void modificaLibera(const AttivitaLibera&);
+public:
+    VisitorVistaModificaAttivita(QMap<QString, QWidget*>, QVBoxLayout*);
+    QMap<QString, QWidget*> getCampiForm();
+
     virtual void visit(const Evento&);
     virtual void visit(const Lettura&);
     virtual void visit(const Promemoria&);

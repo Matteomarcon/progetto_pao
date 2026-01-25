@@ -9,10 +9,10 @@ QString Riunione::getUrl() const {return url;}
 void Riunione::setOrdineDelGiorno(QString ordineDelGiorno) {this->ordineDelGiorno = ordineDelGiorno;}
 void Riunione::setUrl(QString url) {this->url = url;}
 
-void Riunione::accept(VisitorInterface& visitor){
+void Riunione::accept(ConstVisitorInterface& visitor){
     visitor.visit(*this);
 }
-void Riunione::accept(VisitorModifica& visitor){
+void Riunione::accept(VisitorInterface& visitor){
     visitor.visit(*this);
 }
 

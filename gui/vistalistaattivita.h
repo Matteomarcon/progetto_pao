@@ -8,7 +8,7 @@
 #include "attivita/attivita.h"
 
 #include "visitorlistaattivita.h"
-#include "visitormatch.h"
+#include "visitorfiltri.h"
 
 class VistaListaAttivita : public QWidget {
     Q_OBJECT
@@ -23,7 +23,6 @@ public:
 
     void aggiornaLista(const QList<Attivita*>&);
     void deseleziona();
-
     void filtra(const QString&, const QString&, const QDateTime&, const QDateTime&);
 };
 

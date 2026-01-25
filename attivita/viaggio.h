@@ -16,8 +16,8 @@ public:
     void setMezzoDiTrasporto(QString);
     void setLuogoPartenza(QString);
 
+    virtual void accept(ConstVisitorInterface&);
     virtual void accept(VisitorInterface&);
-    virtual void accept(VisitorModifica&);
 
     virtual void toJson(QJsonObject&) const;
     virtual void toXml(QDomElement&) const;
