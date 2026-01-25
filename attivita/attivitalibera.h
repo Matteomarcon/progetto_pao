@@ -13,8 +13,8 @@ public:
 
     QString getStato() const;
     int getPriorita() const;
-    void setStato(QString);
-    void setPriorita(int);
+    void setStato(const QString&);
+    void setPriorita(const int&);
 };
 
 #endif // ATTIVITALIBERA_H

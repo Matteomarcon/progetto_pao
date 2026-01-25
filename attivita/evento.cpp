@@ -6,10 +6,10 @@ Evento::Evento(QString titolo, QString descrizioneBreve, QDateTime dataCreazione
 QString Evento::getOrganizzatore() const {return organizzatore;}
 QString Evento::getLuogo() const {return luogo;}
 
-void Evento::setOrganizzatore(QString organizzatore) {this->organizzatore = organizzatore;}
-void Evento::setLuogo(QString luogo) {this->luogo = luogo;}
+void Evento::setOrganizzatore(const QString& organizzatore) {this->organizzatore = organizzatore;}
+void Evento::setLuogo(const QString& luogo) {this->luogo = luogo;}
 
-void Evento::accept(ConstVisitorInterface& visitor){
+void Evento::accept(ConstVisitorInterface& visitor) const {
     visitor.visit(*this);
 }
 void Evento::accept(VisitorInterface& visitor){

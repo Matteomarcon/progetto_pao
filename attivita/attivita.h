@@ -11,7 +11,7 @@ class Attivita {
 private:
     QString titolo;
     QString descrizioneBreve;
-    QDateTime dataCreazione;
+    const QDateTime dataCreazione;
     QDateTime ultimaModifica;
 public:
     Attivita(QString titolo, QString descrizioneBreve, QDateTime dataCreazione, QDateTime ultimaModifica);
@@ -21,12 +21,11 @@ public:
     QString getDescrizioneBreve() const;
     QDateTime getDataCreazione() const;
     QDateTime getUltimaModifica() const;
-    void setTitolo(QString);
-    void setDescrizioneBreve(QString);
-    void setDataCreazione(QDateTime);
-    void setUltimaModifica(QDateTime);
+    void setTitolo(const QString&);
+    void setDescrizioneBreve(const QString&);
+    void setUltimaModifica(const QDateTime&);
 
-    virtual void accept(ConstVisitorInterface&) = 0;
+    virtual void accept(ConstVisitorInterface&) const = 0;
     virtual void accept(VisitorInterface&) = 0;
     virtual void toJson(QJsonObject&) const = 0;
     virtual void toXml(QDomElement&) const = 0;

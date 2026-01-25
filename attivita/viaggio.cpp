@@ -6,10 +6,10 @@ Viaggio::Viaggio(QString titolo, QString descrizioneBreve, QDateTime dataCreazio
 QString Viaggio::getMezzoDiTrasporto() const {return mezzoDiTrasporto;}
 QString Viaggio::getLuogoPartenza() const {return luogoPartenza;}
 
-void Viaggio::setMezzoDiTrasporto(QString mezzoDiTrasporto) {this->mezzoDiTrasporto = mezzoDiTrasporto;}
-void Viaggio::setLuogoPartenza(QString luogoPartenza) {this->luogoPartenza = luogoPartenza;}
+void Viaggio::setMezzoDiTrasporto(const QString& mezzoDiTrasporto) {this->mezzoDiTrasporto = mezzoDiTrasporto;}
+void Viaggio::setLuogoPartenza(const QString& luogoPartenza) {this->luogoPartenza = luogoPartenza;}
 
-void Viaggio::accept(ConstVisitorInterface& visitor){
+void Viaggio::accept(ConstVisitorInterface& visitor) const {
     visitor.visit(*this);
 }
 void Viaggio::accept(VisitorInterface& visitor){

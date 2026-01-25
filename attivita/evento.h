@@ -13,10 +13,10 @@ public:
 
     QString getOrganizzatore() const;
     QString getLuogo() const;
-    void setOrganizzatore(QString);
-    void setLuogo(QString);
+    void setOrganizzatore(const QString&);
+    void setLuogo(const QString&);
 
-    virtual void accept(ConstVisitorInterface&);
+    virtual void accept(ConstVisitorInterface&) const;
     virtual void accept(VisitorInterface&);
 
     virtual void toJson(QJsonObject&) const;

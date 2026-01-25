@@ -6,5 +6,5 @@ AttivitaProgrammata::AttivitaProgrammata(QString titolo, QString descrizioneBrev
 QDateTime AttivitaProgrammata::getDataInizio() const {return dataInizio;}
 QDateTime AttivitaProgrammata::getDataFine() const {return dataFine;}
 
-void AttivitaProgrammata::setDataInizio(QDateTime dataInizio) {this->dataInizio = dataInizio;}
-void AttivitaProgrammata::setDataFine(QDateTime dataFine) {this->dataFine = dataFine;}
+void AttivitaProgrammata::setDataInizio(const QDateTime& dataInizio) {this->dataInizio = dataInizio;}
+void AttivitaProgrammata::setDataFine(const QDateTime& dataFine) {this->dataFine = dataFine;}

@@ -5,9 +5,9 @@ Promemoria::Promemoria(QString titolo, QString descrizioneBreve, QDateTime dataC
 
 QString Promemoria::getNota() const {return nota;}
 
-void Promemoria::setNota(QString nota) {this->nota = nota;}
+void Promemoria::setNota(const QString& nota) {this->nota = nota;}
 
-void Promemoria::accept(ConstVisitorInterface& visitor){
+void Promemoria::accept(ConstVisitorInterface& visitor) const {
     visitor.visit(*this);
 }
 void Promemoria::accept(VisitorInterface& visitor){

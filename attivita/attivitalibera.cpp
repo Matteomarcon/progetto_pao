@@ -6,5 +6,5 @@ AttivitaLibera::AttivitaLibera(QString titolo, QString descrizioneBreve, QDateTi
 QString AttivitaLibera::getStato() const {return stato;}
 int AttivitaLibera::getPriorita() const {return priorita;}
 
-void AttivitaLibera::setStato(QString stato) {this->stato = stato;}
-void AttivitaLibera::setPriorita(int priorita) {this->priorita = priorita;}
+void AttivitaLibera::setStato(const QString& stato) {this->stato = stato;}
+void AttivitaLibera::setPriorita(const int& priorita) {this->priorita = priorita;}

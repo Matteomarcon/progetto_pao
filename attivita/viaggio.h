@@ -13,10 +13,10 @@ public:
 
     QString getMezzoDiTrasporto() const;
     QString getLuogoPartenza() const;
-    void setMezzoDiTrasporto(QString);
-    void setLuogoPartenza(QString);
+    void setMezzoDiTrasporto(const QString&);
+    void setLuogoPartenza(const QString&);
 
-    virtual void accept(ConstVisitorInterface&);
+    virtual void accept(ConstVisitorInterface&) const;
     virtual void accept(VisitorInterface&);
 
     virtual void toJson(QJsonObject&) const;

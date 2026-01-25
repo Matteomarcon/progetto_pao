@@ -15,11 +15,11 @@ public:
     QString getAutore() const;
     int getPagine() const;
     QString getLingua() const;
-    void setAutore(QString);
-    void setPagine(int);
-    void setLingua(QString);
+    void setAutore(const QString&);
+    void setPagine(const int&);
+    void setLingua(const QString&);
 
-    virtual void accept(ConstVisitorInterface&);
+    virtual void accept(ConstVisitorInterface&) const;
     virtual void accept(VisitorInterface&);
 
     virtual void toJson(QJsonObject&) const;

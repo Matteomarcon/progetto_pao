@@ -13,8 +13,8 @@ public:
 
     QDateTime getDataInizio() const;
     QDateTime getDataFine() const;
-    void setDataInizio(QDateTime);
-    void setDataFine(QDateTime);
+    void setDataInizio(const QDateTime&);
+    void setDataFine(const QDateTime&);
 };
 
 #endif // ATTIVITAPROGRAMMATA_H

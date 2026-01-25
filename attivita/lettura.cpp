@@ -7,11 +7,11 @@ QString Lettura::getAutore() const {return autore;}
 int Lettura::getPagine() const {return pagine;}
 QString Lettura::getLingua() const {return lingua;}
 
-void Lettura::setAutore(QString autore) {this->autore = autore;}
-void Lettura::setPagine(int pagine) {this->pagine = pagine;}
-void Lettura::setLingua(QString lingua) {this->lingua = lingua;}
+void Lettura::setAutore(const QString& autore) {this->autore = autore;}
+void Lettura::setPagine(const int& pagine) {this->pagine = pagine;}
+void Lettura::setLingua(const QString& lingua) {this->lingua = lingua;}
 
-void Lettura::accept(ConstVisitorInterface& visitor){
+void Lettura::accept(ConstVisitorInterface& visitor) const {
     visitor.visit(*this);
 }
 void Lettura::accept(VisitorInterface& visitor){

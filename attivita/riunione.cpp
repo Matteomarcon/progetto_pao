@@ -6,10 +6,10 @@ Riunione::Riunione(QString titolo, QString descrizioneBreve, QDateTime dataCreaz
 QString Riunione::getOrdineDelGiorno() const {return ordineDelGiorno;}
 QString Riunione::getUrl() const {return url;}
 
-void Riunione::setOrdineDelGiorno(QString ordineDelGiorno) {this->ordineDelGiorno = ordineDelGiorno;}
-void Riunione::setUrl(QString url) {this->url = url;}
+void Riunione::setOrdineDelGiorno(const QString& ordineDelGiorno) {this->ordineDelGiorno = ordineDelGiorno;}
+void Riunione::setUrl(const QString& url) {this->url = url;}
 
-void Riunione::accept(ConstVisitorInterface& visitor){
+void Riunione::accept(ConstVisitorInterface& visitor) const {
     visitor.visit(*this);
 }
 void Riunione::accept(VisitorInterface& visitor){

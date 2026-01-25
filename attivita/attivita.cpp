@@ -8,8 +8,7 @@ QString Attivita::getDescrizioneBreve() const {return descrizioneBreve;}
 QDateTime Attivita::getDataCreazione() const {return dataCreazione;}
 QDateTime Attivita::getUltimaModifica() const {return ultimaModifica;}
 
-void Attivita::setTitolo(QString titolo) {this->titolo = titolo;}
-void Attivita::setDescrizioneBreve(QString descrizioneBreve) {this->descrizioneBreve = descrizioneBreve;}
-void Attivita::setDataCreazione(QDateTime dataCreazione) {this->dataCreazione = dataCreazione;}
-void Attivita::setUltimaModifica(QDateTime ultimaModifica) {this->ultimaModifica = ultimaModifica;}
+void Attivita::setTitolo(const QString& titolo) {this->titolo = titolo;}
+void Attivita::setDescrizioneBreve(const QString& descrizioneBreve) {this->descrizioneBreve = descrizioneBreve;}
+void Attivita::setUltimaModifica(const QDateTime& ultimaModifica) {this->ultimaModifica = ultimaModifica;}
 
