@@ -1,9 +1,8 @@
 #include "mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), modificheNonSalvate(false) {
     setWindowTitle("Gestore Attività Personali");
     setWindowIcon(QIcon(":/icone/iconaApp.png"));
-
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect screenGeometry = screen->availableGeometry();
     resize(screenGeometry.width()*3/4, screenGeometry.height()*3/4);
@@ -15,30 +14,25 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     salvaJson->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_S));
     QAction* salvaComeJson = new QAction(QIcon(":/icone/json_salva_come.png"), "Salva come JSON", this);
     salvaComeJson->setShortcut(QKeySequence(Qt::Key_F12));
-
     QAction* apriXml = new QAction(QIcon(":/icone/xml_apri.png"), "Apri XML", this);
     apriXml->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_O));
     QAction* salvaXml = new QAction(QIcon(":/icone/xml_salva.png"), "Salva XML", this);
     salvaXml->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_S));
     QAction* salvaComeXml = new QAction(QIcon(":/icone/xml_salva_come.png"), "Salva come XML", this);
     salvaComeXml->setShortcut(QKeySequence(Qt::SHIFT | Qt::Key_F12));
-
     QAction* creaAttivita = new QAction(QIcon(":/icone/attivita.png"), "Crea attività", this);
     creaAttivita->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_N));
-
     QAction* mostraCalendario = new QAction(QIcon(":/icone/calendario.png"), "Mostra calendario", this);
     mostraCalendario->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_A));
 
     menuApri = menuBar()->addMenu("Apri");
     menuApri->addAction(apriJson);
     menuApri->addAction(apriXml);
-
     menuSalva = menuBar()->addMenu("Salva");
     menuSalva->addAction(salvaJson);
     menuSalva->addAction(salvaComeJson);
     menuSalva->addAction(salvaXml);
     menuSalva->addAction(salvaComeXml);
-
     menuCrea = menuBar()->addMenu("Attività");
     menuCrea->addAction(creaAttivita);
     menuCrea->addAction(mostraCalendario);
@@ -54,12 +48,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     barraStrumenti->addSeparator();
     barraStrumenti->addAction(creaAttivita);
     barraStrumenti->addAction(mostraCalendario);
-
     barraStrumenti->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     barraStrumenti->setIconSize(QSize(72, 72));
-    for (auto* action : barraStrumenti->actions())
-        if (auto* bottone = barraStrumenti->widgetForAction(action))
+    for (auto* a : barraStrumenti->actions()) {
+        if (auto* bottone = barraStrumenti->widgetForAction(a)) {
             bottone->setCursor(Qt::PointingHandCursor);
+        }
+    }
 
     stack = new QStackedWidget(this);
     vistaDefault = new VistaDefault(this);
@@ -77,30 +72,26 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     stack->addWidget(vistaCalendario);
     stack->setCurrentIndex(0);
 
-    QSplitter* divisore = new QSplitter(Qt::Horizontal, this);
-
-    divisore->setStyleSheet(
-        "QSplitter::handle {"
-        "background-color: white;"
-        "width: 20px;"
-        "}"
-    );
-
     QWidget* colonnaSinistra = new QWidget();
     QVBoxLayout* layoutColonnaSinistra = new QVBoxLayout(colonnaSinistra);
-
-    layoutColonnaSinistra->setSpacing(0);
-    layoutColonnaSinistra->setContentsMargins(0, 0, 0, 0);
     layoutColonnaSinistra->addWidget(pannelloRicerca);
     layoutColonnaSinistra->addWidget(vistaListaAttivita);
 
-    divisore->addWidget(colonnaSinistra);
-    divisore->addWidget(stack);
-    divisore->setStretchFactor(0,1);
-    divisore->setStretchFactor(1,2);
-    setCentralWidget(divisore);
+    QSplitter* splitterPrincipale = new QSplitter(Qt::Horizontal, this);
+    splitterPrincipale->addWidget(colonnaSinistra);
+    splitterPrincipale->addWidget(stack);
+    splitterPrincipale->setStretchFactor(0,1);
+    splitterPrincipale->setStretchFactor(1,2);
+    setCentralWidget(splitterPrincipale);
 
-    modificheNonSalvate = false;
+    connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
+    connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
+    connect(salvaComeJson, &QAction::triggered, this, &MainWindow::salvaComeJson);
+    connect(apriXml, &QAction::triggered, this, &MainWindow::apriXml);
+    connect(salvaXml, &QAction::triggered, this, &MainWindow::salvaXml);
+    connect(salvaComeXml, &QAction::triggered, this, &MainWindow::salvaComeXml);
+    connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
+    connect(mostraCalendario, &QAction::triggered, this, &MainWindow::mostraVistaCalendario);
 
     connect(vistaListaAttivita, &VistaListaAttivita::itemSelezionato, this, &MainWindow::mostraVistaDettagli);
     connect(vistaCreazioneAttivita, &VistaCreazioneAttivita::annulla, this, &MainWindow::mostraVistaDefault);
@@ -111,18 +102,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent) {
     connect(vistaModificaAttivita, &VistaModificaAttivita::annulla, this, &MainWindow::mostraVistaDettagli);
     connect(vistaModificaAttivita, &VistaModificaAttivita::salva, this, &MainWindow::salvaModifica);
     connect(vistaCalendario, &VistaCalendario::chiudi, this, &MainWindow::mostraVistaDefault);
-
-    connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
-    connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
-    connect(salvaComeJson, &QAction::triggered, this, &MainWindow::salvaComeJson);
-
-    connect(apriXml, &QAction::triggered, this, &MainWindow::apriXml);
-    connect(salvaXml, &QAction::triggered, this, &MainWindow::salvaXml);
-    connect(salvaComeXml, &QAction::triggered, this, &MainWindow::salvaComeXml);
-
-    connect(creaAttivita, &QAction::triggered, this, &MainWindow::mostraVistaCreazione);
-    connect(mostraCalendario, &QAction::triggered, this, &MainWindow::mostraVistaCalendario);
-
     connect(pannelloRicerca->getBarraRicerca(), &QLineEdit::textChanged, this, &MainWindow::filtraLista);
     connect(pannelloRicerca->getDataInizio(), &QDateTimeEdit::dateTimeChanged, this, &MainWindow::filtraLista);
     connect(pannelloRicerca->getDataFine(), &QDateTimeEdit::dateTimeChanged, this, &MainWindow::filtraLista);

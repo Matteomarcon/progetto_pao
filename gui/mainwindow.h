@@ -25,29 +25,6 @@
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
-private slots:
-    void apriJson();
-    void salvaJson();
-    void salvaComeJson();
-
-    void apriXml();
-    void salvaXml();
-    void salvaComeXml();
-
-    /*void chiudi();*/
-
-    void mostraVistaDefault();
-    void mostraVistaDettagli(Attivita*);
-    void mostraVistaCreazione();
-    void mostraVistaModifica(Attivita*);
-    void mostraVistaCalendario();
-
-    void salvaCreazione(Attivita*);
-    void salvaModifica(Attivita*);
-    void eliminaAttivita(Attivita*);
-
-    void filtraLista();
-
 private:
     QList<Attivita*> listaAttivita;
     QToolBar* barraStrumenti;
@@ -66,12 +43,25 @@ private:
     VistaCalendario* vistaCalendario;
     bool modificheNonSalvate;
 
+    void apriJson();
+    void salvaJson();
+    void salvaComeJson();
+    void apriXml();
+    void salvaXml();
+    void salvaComeXml();
+    void mostraVistaDefault();
+    void mostraVistaDettagli(Attivita*);
+    void mostraVistaCreazione();
+    void mostraVistaModifica(Attivita*);
+    void mostraVistaCalendario();
+    void salvaCreazione(Attivita*);
+    void salvaModifica(Attivita*);
+    void eliminaAttivita(Attivita*);
+    void filtraLista();
 protected:
     void closeEvent(QCloseEvent *event) override;
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
 };
 #endif // MAINWINDOW_H
