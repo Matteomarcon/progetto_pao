@@ -1,0 +1,78 @@
+[
+    {
+        "attivita": "Evento",
+        "dataCreazione": "2026-01-27T17:13:20",
+        "dataFine": "2026-01-31T23:00:36",
+        "dataInizio": "2026-01-31T20:00:36",
+        "descrizioneBreve": "Serata dedicata a installazioni luminose artistiche",
+        "luogo": "Centro città",
+        "organizzatore": "Comune di Padova",
+        "titolo": "Festival delle Luci",
+        "ultimaModifica": "2026-01-27T17:13:20"
+    },
+    {
+        "attivita": "Promemoria",
+        "dataCreazione": "2026-01-27T17:15:14",
+        "descrizioneBreve": "Rinnovo abbonamento ",
+        "nota": "Controllare la scadenza dell'abbonamento",
+        "priorita": 4,
+        "stato": "Non iniziata",
+        "titolo": "Abbonamento palestra",
+        "ultimaModifica": "2026-01-27T17:15:14"
+    },
+    {
+        "attivita": "Riunione",
+        "dataCreazione": "2026-01-27T17:21:25",
+        "dataFine": "2026-02-05T18:30:59",
+        "dataInizio": "2026-02-05T17:00:59",
+        "descrizioneBreve": "Aggiornamento sullo stato del progetto e discussione nuove priorità",
+        "ordineDelGiorno": "Stato del progetto, task in sospeso, assegnazione nuovi compiti e definizione priorità",
+        "titolo": "Riunione team progetto Alpha ",
+        "ultimaModifica": "2026-01-27T17:21:25",
+        "url": "https://meeeting.it/riunione5"
+    },
+    {
+        "attivita": "Viaggio",
+        "dataCreazione": "2026-01-27T17:22:36",
+        "dataFine": "2026-02-22T18:00:34",
+        "dataInizio": "2026-02-20T10:00:34",
+        "descrizioneBreve": "Weekend a Firenze con la famiglia",
+        "luogoPartenza": "Casa a Padova",
+        "mezzoDiTrasporto": "Auto",
+        "titolo": "Firenze",
+        "ultimaModifica": "2026-01-27T17:22:36"
+    },
+    {
+        "attivita": "Promemoria",
+        "dataCreazione": "2026-01-27T17:24:59",
+        "descrizioneBreve": "Pitturare pareti cucina e salotto",
+        "nota": "Contattare Luigi per definire il preventivo",
+        "priorita": 2,
+        "stato": "Completata",
+        "titolo": "Pitturare casa",
+        "ultimaModifica": "2026-01-27T17:24:59"
+    },
+    {
+        "attivita": "Evento",
+        "dataCreazione": "2026-01-27T17:28:41",
+        "dataFine": "2026-02-01T21:00:09",
+        "dataInizio": "2026-01-31T16:30:09",
+        "descrizioneBreve": "Esposizioni ed incontri con autori di fumetti",
+        "luogo": "Udine",
+        "organizzatore": "Fumetti Srl",
+        "titolo": "Fiera del Fumetto",
+        "ultimaModifica": "2026-01-27T17:28:41"
+    },
+    {
+        "attivita": "Lettura",
+        "autore": "George Orwell",
+        "dataCreazione": "2026-01-27T17:30:51",
+        "descrizioneBreve": "Romanzo distopico di fantapolitica",
+        "lingua": "Italiano",
+        "pagine": 384,
+        "priorita": 3,
+        "stato": "In corso",
+        "titolo": "1984",
+        "ultimaModifica": "2026-01-27T17:30:51"
+    }
+]

@@ -21,7 +21,7 @@ void Promemoria::toJson(QJsonObject& obj) const {
     obj["dataCreazione"] =  this->getDataCreazione().toString(Qt::ISODate);
     obj["ultimaModifica"] = this->getUltimaModifica().toString(Qt::ISODate);
     obj["stato"] = this->getStato();
-    obj["priorita"] = QString::number(this->getPriorita());
+    obj["priorita"] = this->getPriorita();
     obj["nota"] = this->getNota();
 }
 
@@ -31,6 +31,6 @@ void Promemoria::toXml(QDomElement& elm) const {
     elm.setAttribute("dataCreazione", this->getDataCreazione().toString(Qt::ISODate));
     elm.setAttribute("ultimaModifica", this->getUltimaModifica().toString(Qt::ISODate));
     elm.setAttribute("stato", this->getStato());
-    elm.setAttribute("priorita", QString::number(this->getPriorita()));
+    elm.setAttribute("priorita", this->getPriorita());
     elm.setAttribute("nota", this->getNota());
 }

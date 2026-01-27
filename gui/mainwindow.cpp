@@ -75,9 +75,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), modificheNonSalvat
     QSplitter* splitterPrincipale = new QSplitter(Qt::Horizontal, this);
     splitterPrincipale->addWidget(colonnaSinistra);
     splitterPrincipale->addWidget(stack);
-    splitterPrincipale->setStretchFactor(0,1);
-    splitterPrincipale->setStretchFactor(1,2);
+    splitterPrincipale->setStretchFactor(0,2);
+    splitterPrincipale->setStretchFactor(1,3);
+    splitterPrincipale->setStyleSheet("QSplitter::handle { background-color: gray; }");
     setCentralWidget(splitterPrincipale);
+
 
     connect(apriJson, &QAction::triggered, this, &MainWindow::apriJson);
     connect(salvaJson, &QAction::triggered, this, &MainWindow::salvaJson);
