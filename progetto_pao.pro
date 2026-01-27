@@ -31,7 +31,7 @@ SOURCES += \
     gui/vistalistaattivita.cpp \
     gui/vistamodificaattivita.cpp \
     gui/widgetfiltri.cpp \
-    json/gestorejson.cpp \
+    json/GestoreJson.cpp \
     main.cpp \
     xml/gestorexml.cpp
 
@@ -59,7 +59,7 @@ HEADERS += \
     gui/vistalistaattivita.h \
     gui/vistamodificaattivita.h \
     gui/widgetfiltri.h \
-    json/gestorejson.h \
+    json/GestoreJson.h \
     xml/gestorexml.h
 
 FORMS += \

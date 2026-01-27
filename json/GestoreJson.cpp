@@ -1,4 +1,4 @@
-#include "gestorejson.h"
+#include "GestoreJson.h"
 
 GestoreJson::GestoreJson(const QString& path): path(path) {}
 
