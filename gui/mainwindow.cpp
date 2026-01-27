@@ -50,11 +50,6 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), modificheNonSalvat
     barraStrumenti->addAction(mostraCalendario);
     barraStrumenti->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     barraStrumenti->setIconSize(QSize(72, 72));
-    for (auto* a : barraStrumenti->actions()) {
-        if (auto* bottone = barraStrumenti->widgetForAction(a)) {
-            bottone->setCursor(Qt::PointingHandCursor);
-        }
-    }
 
     stack = new QStackedWidget(this);
     vistaDefault = new VistaDefault(this);
