@@ -33,7 +33,7 @@ SOURCES += \
     gui/widgetfiltri.cpp \
     json/gestorejson.cpp \
     main.cpp \
-    xml/GestoreXml.cpp
+    xml/gestorexml.cpp
 
 HEADERS += \
     attivita/ConstVisitorInterface.h \
@@ -60,7 +60,7 @@ HEADERS += \
     gui/vistamodificaattivita.h \
     gui/widgetfiltri.h \
     json/gestorejson.h \
-    xml/GestoreXml.h
+    xml/gestorexml.h
 
 FORMS += \
     gui/mainwindow.ui

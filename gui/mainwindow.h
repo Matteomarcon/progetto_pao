@@ -13,7 +13,7 @@
 #include <QCloseEvent>
 
 #include "attivita/attivita.h"
-#include "Json/GestoreJson.h"
+#include "json/GestoreJson.h"
 #include "xml/GestoreXml.h"
 #include "vistadefault.h"
 #include "vistalistaattivita.h"
